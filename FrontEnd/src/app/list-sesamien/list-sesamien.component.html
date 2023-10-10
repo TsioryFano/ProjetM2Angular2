@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div *ngFor="let sesamien of sesamienList" class="col m4 s6">
+      <div class="card horizontal" sesamienBorderCard>
+        <div class="card image">
+          <img [src]="sesamien.picture" />
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <p>{{ sesamien.name }}</p>
+            <p>
+              <small>{{
+                sesamien.created | date : "dd/MM/yyy" | uppercase
+              }}</small>
+            </p>
+            <span
+              *ngFor="let mention of sesamien.mentions"
+              class="{{ mention | sesamienMentionColor }}"
+            >
+              {{ mention }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
