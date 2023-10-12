@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'sesamienMentionColor'
 })
-export class SesamienTypeColorPipe implements PipeTransform {
+export class SesamienMentionColorPipe implements PipeTransform {
 
   transform(mention: string): string {
     let color: string;

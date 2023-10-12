@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListSesamienComponent } from './list-sesamien/list-sesamien.component';
-import { DetailSesamienComponent } from './detail-sesamien/detail-sesamien.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  {path: 'sesamiens', component: ListSesamienComponent},
-  {path: 'sesamien/:id', component: DetailSesamienComponent},
-  {path: '', redirectTo: 'sesamiens', pathMatch: 'full'}
+  {path: '', redirectTo: 'sesamiens', pathMatch: 'full'},
+  {path:'**', component: PageNotFoundComponent}
 ];
 
 @NgModule({

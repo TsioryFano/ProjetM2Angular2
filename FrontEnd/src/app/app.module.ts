@@ -1,26 +1,26 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BorderCardDirective } from './border-card.directive';
-import { SesamienTypeColorPipe } from './sesamien-mention-color.pipe';
-import { ListSesamienComponent } from './list-sesamien/list-sesamien.component';
-import { DetailSesamienComponent } from './detail-sesamien/detail-sesamien.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SesamienModule } from './sesamien/sesamien.module';
+import { FormsModule } from '@angular/forms';
+import { SesamienService } from './sesamien/sesamien.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BorderCardDirective,
-    SesamienTypeColorPipe,
-    ListSesamienComponent,
-    DetailSesamienComponent
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    SesamienModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [SesamienService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
