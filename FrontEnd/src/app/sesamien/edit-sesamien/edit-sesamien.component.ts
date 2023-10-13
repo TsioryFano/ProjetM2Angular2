@@ -20,7 +20,8 @@ export class EditSesamienComponent implements OnInit {
   ngOnInit(){
     const sesamienId: string|null = this.route.snapshot.paramMap.get('id');
     if(sesamienId){
-      this.sesamien = this.sesamienService.getSesamienById(+sesamienId);
+      this.sesamienService.getSesamienById(+sesamienId)
+        .subscribe(sesamien => this.sesamien = sesamien);
     } else {
       this.sesamien = undefined;
     }

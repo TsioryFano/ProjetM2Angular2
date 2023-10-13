@@ -12,15 +12,36 @@ export class SesamienService {
     throw new Error('Method not implemented.');
   }
   **/
-  //constructor(private http: HttpClient){}
+constructor(private http: HttpClient){}
 
-  getSesamienList():Sesamien[] {
+
+//--------------------------- getSesamienList -----------------
+getSesamienList():Observable<Sesamien[]> {
+  return this.http.get<Sesamien[]>('api/sesamiens').pipe(
+    tap((response)=> this.log(response)),
+    catchError((error) => this.handleError( error,[]))
+  );
+}
+
+ /** getSesamienList():Sesamien[] {
     return SESAMIENS;
   }
+ */
+//------------- getSesamienById --------------------
 
-  getSesamienById(sesamienId: number): Sesamien | undefined{
+getSesamienById(sesamienId: number):Observable <Sesamien | undefined>{
+  return this.http.get<Sesamien>(`api/sesamien/${sesamienId}`).pipe(
+    tap((response)=> this.log(response)),
+    catchError((error) => this.handleError( error,undefined))
+  );
+}
+
+ /** getSesamienById(sesamienId: number): Sesamien | undefined{
     return SESAMIENS.find(sesamien => sesamien.id == sesamienId);
   }
+ */
+// -----------------------------------
+
 /** 
   searchSesamienList(term:string):Observable<Sesamien[]>{
     if(term.length <=1) {
@@ -61,7 +82,7 @@ export class SesamienService {
     catchError((error)=>this.handleError(error, null))
   );
  }
-
+*/
   private log(response: any){
     console.table(response);
   }
@@ -70,7 +91,7 @@ export class SesamienService {
     console.error(error);
     return of (errorValue);
   }
-*/
+
   getSesamienMentionList():string[]{
     return ['S','L'];
   }

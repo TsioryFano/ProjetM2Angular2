@@ -17,7 +17,8 @@ export class ListSesamienComponent {
     ){}
 
     ngOnInit(){
-      this.sesamienList = this.sesamienService.getSesamienList();
+      this.sesamienService.getSesamienList()
+      .subscribe(sesamienList => this.sesamienList = sesamienList );
     }
 
    /*
