@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { SesamienService } from '../sesamien.service';
 import { Sesamien } from '../sesamien';
 import { Router } from '@angular/router';
+import { SESAMIEN_BY_ID_URL } from 'src/app/constants/endpoints';
 
 @Component({
   selector: 'app-sesamien-form',
@@ -48,10 +49,9 @@ export class SesamienFormComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log('Submit form!');
-    this.router.navigate(['/sesamien', this.sesamien.id]);
+    this.sesamienService.updateSesamien(this.sesamien)
+      .subscribe(() =>  this.router.navigate(['/sesamien', this.sesamien.id]));
   }
-
 /*
   onSubmit(){
     if(this.isAddForm){
@@ -62,5 +62,10 @@ export class SesamienFormComponent implements OnInit {
       .subscribe(()=> this.router.navigate(['/sesamien', this.sesamien.id]));
     }
   }  
-  */   
+   
+  onSubmit(){
+    console.log('Submit form!');
+    this.router.navigate(['/sesamien', this.sesamien.id]);
+  }
+*/  
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Sesamien } from '../sesamien';
 import { Router } from '@angular/router';
 import { SesamienService } from '../sesamien.service';
@@ -7,7 +7,7 @@ import { SesamienService } from '../sesamien.service';
   selector: 'app-list-sesamien',
   templateUrl: './list-sesamien.component.html'
 })
-export class ListSesamienComponent {
+export class ListSesamienComponent implements OnInit{
 
   sesamienList: Sesamien[];  
 
@@ -19,7 +19,7 @@ export class ListSesamienComponent {
     ngOnInit(){
       this.sesamienService.getSesamienList()
       .subscribe(sesamienList => this.sesamienList = sesamienList );
-    }
+    }  
 
    /*
     ngOnInit(){
