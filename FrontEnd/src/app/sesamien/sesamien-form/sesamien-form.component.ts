@@ -48,12 +48,22 @@ export class SesamienFormComponent implements OnInit {
     return true;
   }
 
-  onSubmit(){
-    this.sesamienService.updateSesamien(this.sesamien)
-      .subscribe(() =>  this.router.navigate(['/sesamien', this.sesamien.id]));
+  onSubmit() {
+    console.log("Données envoyées dans la requête PUT : ", this.sesamien);
+  
+    if (this.isAddForm) {
+      this.sesamienService.addSesamien(this.sesamien)
+        .subscribe((sesamien: Sesamien) => this.router.navigate(['/sesamien', sesamien.id]));
+    } else {
+      this.sesamienService.updateSesamien(this.sesamien.id, this.sesamien)
+        .subscribe(() => this.router.navigate(['/sesamien', this.sesamien.id]));
+    }
   }
+  
 /*
   onSubmit(){
+    console.log("Données envoyées dans la requête PUT : ", this.sesamien);
+    console.log(this.sesamien.id);
     if(this.isAddForm){
       this.sesamienService.addSesamien(this.sesamien)
       .subscribe((sesamien:Sesamien) => this.router.navigate(['/sesamien', sesamien.id]));
@@ -63,6 +73,13 @@ export class SesamienFormComponent implements OnInit {
     }
   }  
    
+
+  onSubmit(){
+    this.sesamienService.updateSesamien(this.sesamien)
+      .subscribe(() =>  this.router.navigate(['/sesamien', this.sesamien.id]));
+  }
+
+
   onSubmit(){
     console.log('Submit form!');
     this.router.navigate(['/sesamien', this.sesamien.id]);

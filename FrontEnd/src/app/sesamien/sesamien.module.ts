@@ -8,9 +8,11 @@ import { Router, RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SesamienFormComponent } from './sesamien-form/sesamien-form.component';
 import { EditSesamienComponent } from './edit-sesamien/edit-sesamien.component';
+import { AddSesamienComponent } from './add-sesamien/add-sesamien.component';
 
 const sesamienRoutes: Routes = [
   {path: 'edit/sesamien/:id', component: EditSesamienComponent},
+  {path: 'sesamien/add', component: AddSesamienComponent},
   {path: 'sesamiens', component: ListSesamienComponent},
   {path: 'sesamien/:id', component: DetailSesamienComponent},
 ]
@@ -22,7 +24,8 @@ const sesamienRoutes: Routes = [
     BorderCardDirective,
     SesamienMentionColorPipe,
     SesamienFormComponent,
-    EditSesamienComponent
+    EditSesamienComponent,
+    AddSesamienComponent
   ],
   imports: [
     CommonModule,

@@ -28,7 +28,7 @@ export class SesamienService {
      return SESAMIENS;
    }
   */
-  //------------- getSesamienById --------------------
+  //----------------- getSesamienById --------------------
 
   getSesamienById(sesamienId: number): Observable<Sesamien | undefined> {
     return this.http.get<Sesamien>(`${SESAMIEN_BY_ID_URL}${sesamienId}`).pipe(
@@ -44,6 +44,8 @@ export class SesamienService {
   // -----------------------------------
 
   /** 
+  //----------------- searchSesamienList --------------------
+
     searchSesamienList(term:string):Observable<Sesamien[]>{
       if(term.length <=1) {
         return of([]);
@@ -55,8 +57,8 @@ export class SesamienService {
       );
     }
      */
-   //------------- updateSesamienById --------------------
-    updateSesamien(sesamien: Sesamien): Observable<null> {
+//------------- updateSesamienById --------------------
+ /* updateSesamien(sesamien: Sesamien): Observable<null> {
       const httpOptions = {
        headers: new HttpHeaders({'Content-Type': 'application/json'})
       };
@@ -65,26 +67,40 @@ export class SesamienService {
        tap((response)=>this.log(response)),
        catchError((error)=>this.handleError(error, null))
       );
-   }
-  /**
-   addSesamien(sesamien: Sesamien):Observable<Sesamien> {
+  }
+  */
+  updateSesamien(sesamienId: number, updatedSesamien: Sesamien): Observable<Sesamien | undefined> {
+    const url = `${SESAMIEN_BY_ID_URL}${sesamienId}`;
+    return this.http.put<Sesamien>(url, updatedSesamien).pipe(
+      tap((response) => this.log(response)),
+      catchError((error) => this.handleError(error, undefined))
+    );
+  }
+
+//------------- addSesamienById --------------------
+addSesamien(sesamien: Sesamien):Observable<Sesamien> {
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
      };
   
-     return this.http.post<Sesamien>('api/sesamiens', sesamien, httpOptions).pipe(
+     return this.http.post<Sesamien>(SESAMIENS_URL, sesamien, httpOptions).pipe(
       tap((response)=>this.log(response)),
        catchError((error)=>this.handleError(error, null))
      );
    }
+
+// -----------------------------------
   
+//------------- deleteSesamienById --------------------
+
    deleteSesamienByID(sesamienId: number): Observable<null>{
     return this.http.delete(`api/sesamiens/${sesamienId}`).pipe(
       tap((response)=>this.log(response)),
       catchError((error)=>this.handleError(error, null))
     );
    }
-  */
+// -----------------------------------
+
   private log(response: any) {
     console.table(response);
   }

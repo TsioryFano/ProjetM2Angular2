@@ -26,12 +26,12 @@ export class DetailSesamienComponent implements OnInit {
     }
       }   
 
-  /*
+  
   deleteSesamien(sesamien: Sesamien){
     this.sesamienService.deleteSesamienByID(sesamien.id)
     .subscribe(()=>this.goToSesamienList());
   }
-  */
+  
   goToSesamienList(){
     this.router.navigate(['/sesamiens']);
   }
