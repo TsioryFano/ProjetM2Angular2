@@ -1,9 +1,9 @@
 <div *ngIf="sesamien" class="row">
   <div class="col s12 m8 offset-m2">
-    <h2 class="header center">{{ sesamien.name }}</h2>
+    <h2 class="header center">{{ sesamien.nom }}</h2>
     <div class="card horizontal hoverable">
       <div class="card-image">
-        <img [src]="sesamien.picture" />
+        <img [src]="sesamien.image" />
       </div>
       <div class="card-stacked">
         <div class="card-content">
@@ -12,35 +12,67 @@
               <tr>
                 <td>Nom</td>
                 <td>
-                  <strong>{{ sesamien.name }}</strong>
+                  <strong>{{ sesamien.nom }}</strong>
                 </td>
               </tr>
               <tr>
-                <td>Points de vie</td>
+                <td>Prénom usuel</td>
                 <td>
-                  <strong>{{ sesamien.hp }}</strong>
-                </td>
-              </tr>
-              <tr>
-                <td>Dégâts</td>
-                <td>
-                  <strong>{{ sesamien.cp }}</strong>
+                  <strong>{{ sesamien.prenomUsuel }}</strong>
                 </td>
               </tr>
               <tr>
                 <td>Mention</td>
                 <td>
-                  <span
-                    *ngFor="let mention of sesamien.mentions"
-                    class="{{ mention | sesamienMentionColor }}"
-                    >{{ mention }}</span
-                  >
+                  {{ sesamien.mention }}
                 </td>
               </tr>
               <tr>
-                <td>Date de création</td>
+                <td>Age</td>
                 <td>
-                  <em>{{ sesamien.created | date : "dd/MM/yyyy" }}</em>
+                  <strong>{{ sesamien.age }}</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Promotion</td>
+                <td>
+                  <strong>{{ sesamien.promotion }}</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Région d'origine</td>
+                <td>
+                  <strong>{{ sesamien.regionOrigine }}</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Genre</td>
+                <td>
+                  <strong>{{ sesamien.genre }}</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Classement</td>
+                <td>
+                  <strong>{{ sesamien.classement }}</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Moyenne Générale CC</td>
+                <td>
+                  <strong>{{ sesamien.moyenneGeneraleCC }}</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Moyenne Générale CT</td>
+                <td>
+                  <strong>{{ sesamien.moyenneGeneraleCT }}</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Moyenne Générale (CC et CT)</td>
+                <td>
+                  <strong>{{ sesamien.moyenneGenerale }}</strong>
                 </td>
               </tr>
             </tbody>
@@ -55,8 +87,3 @@
     </div>
   </div>
 </div>
-<!--
-<h4 *ngIf="!sesamien" class="center">
-  <app-loader></app-loader>
-</h4>
--->

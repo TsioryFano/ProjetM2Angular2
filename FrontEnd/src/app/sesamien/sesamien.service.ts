@@ -43,7 +43,7 @@ export class SesamienService {
   */
   // -----------------------------------
 
-  /** 
+  
   //----------------- searchSesamienList --------------------
 
     searchSesamienList(term:string):Observable<Sesamien[]>{
@@ -56,7 +56,9 @@ export class SesamienService {
         catchError((error)=> this.handleError(error,[]))
       );
     }
-     */
+  // -----------------------------------
+
+  
 //------------- updateSesamienById --------------------
  /* updateSesamien(sesamien: Sesamien): Observable<null> {
       const httpOptions = {

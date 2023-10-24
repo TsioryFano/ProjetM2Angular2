@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { SesamienFormComponent } from './sesamien-form/sesamien-form.component';
 import { EditSesamienComponent } from './edit-sesamien/edit-sesamien.component';
 import { AddSesamienComponent } from './add-sesamien/add-sesamien.component';
+import { SearchSesamienComponent } from './search-sesamien/search-sesamien.component';
 
 const sesamienRoutes: Routes = [
   {path: 'edit/sesamien/:id', component: EditSesamienComponent},
@@ -25,7 +26,8 @@ const sesamienRoutes: Routes = [
     SesamienMentionColorPipe,
     SesamienFormComponent,
     EditSesamienComponent,
-    AddSesamienComponent
+    AddSesamienComponent,
+    SearchSesamienComponent
   ],
   imports: [
     CommonModule,

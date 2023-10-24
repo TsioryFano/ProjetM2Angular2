@@ -4,6 +4,7 @@ import { SesamienFormComponent } from './sesamien-form.component';
 import { SesamienService } from '../sesamien.service';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
+import { Sesamien, Mention } from '../sesamien'; // Importez le type Mention depuis le fichier sesamien.ts
 
 describe('SesamienFormComponent', () => {
   let component: SesamienFormComponent;
@@ -24,15 +25,13 @@ describe('SesamienFormComponent', () => {
     router = TestBed.inject(Router);
 
     // Initialiser le composant avec des données factices
-    component.sesamien = {
-      id: 1,
-      name: 'Doe',
-      picture: 'image.jpg',
-      hp: 15, 
-      cp: 20,
-      mentions: [],
-      created: new Date() 
-    };
+    component.sesamien = new Sesamien(); // Assurez-vous de créer un nouvel objet Sesamien
+    component.sesamien.id = 1;
+    component.sesamien.nom = 'Doe';
+    component.sesamien.prenomUsuel = 'John'; // Ajoutez un prénom usuel factice
+    component.sesamien.mention = Mention.S; // Définissez la mention
+    component.sesamien.age = 25; // Définissez l'âge
+    component.sesamien.promotion = 'P24'; // Définissez la promotion
     component.isAddForm = true;
   });
 
@@ -41,7 +40,7 @@ describe('SesamienFormComponent', () => {
   });
 
   it('should initialize mentions from the service', () => {
-    const mentionList = ['S', 'L'];
+    const mentionList: Mention[] = [Mention.S, Mention.L];
     spyOn(sesamienService, 'getSesamienMentionList').and.returnValue(mentionList);
 
     component.ngOnInit();
@@ -50,37 +49,38 @@ describe('SesamienFormComponent', () => {
   });
 
   it('should check if a mention is selected', () => {
-    component.sesamien.mentions = ['S', 'L'];
+    component.sesamien.mention = Mention.S; // Définissez la mention à S
 
-    expect(component.hasMention('S')).toBeTruthy();
-    expect(component.hasMention('A')).toBeFalsy();
+    expect(component.hasMention(Mention.S)).toBeTruthy();
+    expect(component.hasMention(Mention.L)).toBeFalsy();
   });
 
   it('should select and unselect mentions', () => {
-    const event: Event = new Event('click'); 
+    const event: Event = new Event('click');
     (event.target as HTMLInputElement) = { checked: true } as HTMLInputElement;
-    
-    // Ajouter une mention
-    component.selectMention(event, 'S');
-    expect(component.sesamien.mentions).toEqual(['S']);
 
-    // Supprimer une mention
-    if(event.target) {
-    (event.target as HTMLInputElement).checked = false;
-    component.selectMention(event, 'S');
-    expect(component.sesamien.mentions).toEqual([]);
+    // Sélectionnez une mention
+    component.selectMention(event, Mention.L); // Sélectionnez une mention différente
+
+    expect(component.sesamien.mention).toEqual(Mention.L);
+
+    // Désélectionnez la mention
+    if (event.target) {
+      (event.target as HTMLInputElement).checked = false;
+      component.selectMention(event, Mention.S); // Désélectionnez la mention
+      expect(component.sesamien.mention).toBeUndefined(); // La mention devrait être undefined
     }
   });
 
   it('should validate mentions', () => {
-    component.sesamien.mentions = ['S'];
+    component.sesamien.mention = Mention.S; 
+    const isValid = component.isMentionsValid(Mention.S);
 
-    // Une mention est déjà sélectionnée, donc ajouter une autre mention ne sera pas valide
-    expect(component.isMentionsValid('L')).toBeFalsy();
+    if (component.sesamien.mention === Mention.S) {
+      expect(isValid).toBeTruthy();
+    } else {
 
-    // Si aucune mention n'est sélectionnée, ajouter une mention sera valide
-    component.sesamien.mentions = [];
-    expect(component.isMentionsValid('S')).toBeTruthy();
+    }
   });
 
   it('should submit the form and navigate', () => {

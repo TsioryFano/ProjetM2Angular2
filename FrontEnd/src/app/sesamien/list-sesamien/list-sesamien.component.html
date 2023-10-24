@@ -1,5 +1,7 @@
 <div class="container">
   <div class="row">
+    <app-search-sesamien></app-search-sesamien>
+
     <div *ngFor="let sesamien of sesamienList" class="col m4 s6">
       <div
         (click)="goToSesamien(sesamien)"
@@ -7,21 +9,17 @@
         sesamienBorderCard
       >
         <div class="card image">
-          <img [src]="sesamien.picture" />
+          <img [src]="sesamien.image" />
         </div>
         <div class="card-stacked">
           <div class="card-content">
-            <p>{{ sesamien.name }}</p>
-            <p>
-              <small>{{
-                sesamien.created | date : "dd/MM/yyy" | uppercase
-              }}</small>
-            </p>
+            <p>{{ sesamien.nom }}</p>
+            <p>{{ sesamien.prenoms }}</p>
             <span
-              *ngFor="let mention of sesamien.mentions"
-              class="{{ mention | sesamienMentionColor }}"
+              *ngFor="let mention of sesamien.notes"
+              class="{{ mention.codeUE | sesamienMentionColor }}"
             >
-              {{ mention }}
+              {{ mention.codeUE }}: {{ mention.noteCC }}/{{ mention.noteCT }}
             </span>
           </div>
         </div>

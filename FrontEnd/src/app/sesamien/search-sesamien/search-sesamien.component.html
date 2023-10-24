@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col 12 m6 offset-m3">
+    <div class="card">
+      <div class="card-content">
+        <div class="input-field">
+          <input
+            #searchBox
+            (keyup)="search(searchBox.value)"
+            placeholder="Rechercher un Sesamien"
+          />
+          <div class="collection">
+            <a
+              *ngFor="let sesamien of sesamien$ | async"
+              (click)="goToDetail(sesamien)"
+              class="collection-item"
+            >
+              {{ sesamien.nom }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -36,7 +36,7 @@ export enum Genre {
 }
 
 export class Sesamien {
-    id: number;
+    id: string = "";
     nom: string; // Nom de l'étudiant
     prenoms: string; // Prénoms de l'étudiant
     prenomUsuel: string; // Prénom usuel

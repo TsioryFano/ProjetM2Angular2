@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SesamienService } from '../sesamien.service';
-import { Sesamien } from '../sesamien';
+import { Sesamien, Mention } from '../sesamien'; 
 import { Router } from '@angular/router';
-import { SESAMIEN_BY_ID_URL } from 'src/app/constants/endpoints';
 
 @Component({
   selector: 'app-sesamien-form',
@@ -10,79 +9,47 @@ import { SESAMIEN_BY_ID_URL } from 'src/app/constants/endpoints';
   styleUrls: ['./sesamien-form.component.css']
 })
 export class SesamienFormComponent implements OnInit {
-  @Input() sesamien : Sesamien;
-  mentions: string[];
+  @Input() sesamien: Sesamien;
+  mentions: Mention[]; 
   isAddForm: boolean;
- 
+
   constructor(
     private sesamienService: SesamienService,
-    private router:Router
-    ) { }
+    private router: Router
+  ) {}
 
-  ngOnInit(){
-    this.mentions = this.sesamienService.getSesamienMentionList();
+  ngOnInit() {
+    this.mentions = Object.values(Mention); // Récupérez les mentions depuis l'enum Mention
     this.isAddForm = this.router.url.includes('add');
   }
 
-  hasMention(mention:string): boolean{
-    return this.sesamien.mentions.includes(mention);
-  }
-  selectMention($event: Event, mention: string ){
-    const isChecked: boolean =($event.target as HTMLInputElement).checked;
-    if(isChecked){
-      this.sesamien.mentions.push(mention);
-    } else {
-      const index = this.sesamien.mentions.indexOf(mention);
-      this.sesamien.mentions.splice(index, 1);
-    }
-  }
-  
-  isMentionsValid(mention: string): boolean{
-    if(this.sesamien.mentions.length == 1 && this.hasMention(mention)){
-      return false;
-    }
-    if(this.sesamien?.mentions.length > 1 && !this.hasMention(mention)){
-      return false;
-    }
 
+  hasMention(mention: Mention): boolean {
+    return this.sesamien.mention === mention;
+  }
+
+  selectMention($event: Event, mention: Mention) {
+    this.sesamien.mention = mention;
+  }
+
+  isMentionsValid(mention: Mention): boolean {
+    
     return true;
   }
 
   onSubmit() {
     console.log("Données envoyées dans la requête PUT : ", this.sesamien);
-  
+
     if (this.isAddForm) {
-      this.sesamienService.addSesamien(this.sesamien)
-        .subscribe((sesamien: Sesamien) => this.router.navigate(['/sesamien', sesamien.id]));
+      this.sesamienService
+        .addSesamien(this.sesamien)
+        .subscribe((sesamien: Sesamien) =>
+          this.router.navigate(['/sesamien', sesamien.id])
+        );
     } else {
-      this.sesamienService.updateSesamien(this.sesamien.id, this.sesamien)
+      this.sesamienService
+        .updateSesamien(this.sesamien.id, this.sesamien)
         .subscribe(() => this.router.navigate(['/sesamien', this.sesamien.id]));
     }
   }
-  
-/*
-  onSubmit(){
-    console.log("Données envoyées dans la requête PUT : ", this.sesamien);
-    console.log(this.sesamien.id);
-    if(this.isAddForm){
-      this.sesamienService.addSesamien(this.sesamien)
-      .subscribe((sesamien:Sesamien) => this.router.navigate(['/sesamien', sesamien.id]));
-    }else{    
-      this.sesamienService.updateSesamien(this.sesamien)
-      .subscribe(()=> this.router.navigate(['/sesamien', this.sesamien.id]));
-    }
-  }  
-   
-
-  onSubmit(){
-    this.sesamienService.updateSesamien(this.sesamien)
-      .subscribe(() =>  this.router.navigate(['/sesamien', this.sesamien.id]));
-  }
-
-
-  onSubmit(){
-    console.log('Submit form!');
-    this.router.navigate(['/sesamien', this.sesamien.id]);
-  }
-*/  
 }

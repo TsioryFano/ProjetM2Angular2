@@ -20,7 +20,7 @@ app.get("/api/sesamiens", (req, res) => {
 
 app.get("/api/sesamien/:sesamienId", (req, res) => {
     const sesamienId = req.params.sesamienId;
-    const sesamien = SESAMIENS.find(sesamien => sesamien.id == sesamienId);
+    const sesamien = SESAMIENS.find((sesamien) => sesamien.id === sesamienId);
     res.send(sesamien);
 })
 
@@ -29,17 +29,26 @@ app.put("/api/sesamien/:sesamienId", (req, res) => {
     const updatedSesamien = req.body; // Le corps de la requête contient les données mises à jour
 
     // Recherchez le sesamien par son ID dans votre tableau SESAMIENS (ou dans votre base de données)
-    const sesamien = SESAMIENS.find(sesamien => sesamien.id == sesamienId);
+    const sesamien = SESAMIENS.find((sesamien) => sesamien.id === sesamienId);
 
     if (!sesamien) {
         return res.status(404).json({ message: "Sesamien non trouvé" });
     }
     // Mettez à jour les données du sesamien avec les nouvelles données fournies
-    sesamien.name = updatedSesamien.name; 
-    sesamien.hp = updatedSesamien.hp;
-    sesamien.cp = updatedSesamien.cp;
-    sesamien.picture = updatedSesamien.picture;
-    sesamien.mentions = updatedSesamien.mentions;
+    sesamien.nom = updatedSesamien.nom;
+    sesamien.prenoms = updatedSesamien.prenoms;
+    sesamien.prenomUsuel = updatedSesamien.prenomUsuel;
+    sesamien.mention = updatedSesamien.mention;
+    sesamien.age = updatedSesamien.age;
+    sesamien.promotion = updatedSesamien.promotion;
+    sesamien.image = updatedSesamien.image;
+    sesamien.regionOrigine = updatedSesamien.regionOrigine;
+    sesamien.genre = updatedSesamien.genre;
+    sesamien.classement = updatedSesamien.classement;
+    sesamien.moyenneGeneraleCC = updatedSesamien.moyenneGeneraleCC;
+    sesamien.moyenneGeneraleCT = updatedSesamien.moyenneGeneraleCT;
+    sesamien.moyenneGenerale = updatedSesamien.moyenneGenerale;
+    sesamien.notes = updatedSesamien.notes;
 
     console.log("Données envoyées dans la requête PUT : ", updatedSesamien);
 
@@ -60,12 +69,21 @@ app.post("/api/sesamiens", (req, res) => {
   
     // Créez le nouvel sésamien avec l'identifiant généré
     const sesamien = {
-      id: shortId,
-      name: newSesamien.name,
-      hp: newSesamien.hp,
-      cp: newSesamien.cp,
-      picture: newSesamien.picture,
-      mentions: newSesamien.mentions || [], // Assurez-vous que mentions est un tableau
+        id: shortId,
+        nom: newSesamien.nom,
+        prenoms: newSesamien.prenoms,
+        prenomUsuel: newSesamien.prenomUsuel,
+        mention: newSesamien.mention,
+        age: newSesamien.age,
+        promotion: newSesamien.promotion,
+        image: newSesamien.image,
+        regionOrigine: newSesamien.regionOrigine,
+        genre: newSesamien.genre,
+        classement: newSesamien.classement,
+        moyenneGeneraleCC: newSesamien.moyenneGeneraleCC,
+        moyenneGeneraleCT: newSesamien.moyenneGeneraleCT,
+        moyenneGenerale: newSesamien.moyenneGenerale,
+        notes: newSesamien.notes || [],
     };
   
     // Ajoutez le nouvel sésamien au tableau SESAMIENS (ou insérez-le dans votre base de données)
