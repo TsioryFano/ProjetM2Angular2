@@ -9,72 +9,169 @@
         <div class="card-content">
           <table class="bordered striped">
             <tbody>
-              <tr>
-                <td>Nom</td>
-                <td>
-                  <strong>{{ sesamien.nom }}</strong>
-                </td>
-              </tr>
-              <tr>
-                <td>Prénom usuel</td>
-                <td>
-                  <strong>{{ sesamien.prenomUsuel }}</strong>
-                </td>
-              </tr>
-              <tr>
-                <td>Mention</td>
-                <td>
-                  {{ sesamien.mention }}
-                </td>
-              </tr>
-              <tr>
-                <td>Age</td>
-                <td>
-                  <strong>{{ sesamien.age }}</strong>
-                </td>
-              </tr>
-              <tr>
-                <td>Promotion</td>
-                <td>
-                  <strong>{{ sesamien.promotion }}</strong>
-                </td>
-              </tr>
-              <tr>
-                <td>Région d'origine</td>
-                <td>
-                  <strong>{{ sesamien.regionOrigine }}</strong>
-                </td>
-              </tr>
-              <tr>
-                <td>Genre</td>
-                <td>
-                  <strong>{{ sesamien.genre }}</strong>
-                </td>
-              </tr>
-              <tr>
-                <td>Classement</td>
-                <td>
-                  <strong>{{ sesamien.classement }}</strong>
-                </td>
-              </tr>
-              <tr>
-                <td>Moyenne Générale CC</td>
-                <td>
-                  <strong>{{ sesamien.moyenneGeneraleCC }}</strong>
-                </td>
-              </tr>
-              <tr>
-                <td>Moyenne Générale CT</td>
-                <td>
-                  <strong>{{ sesamien.moyenneGeneraleCT }}</strong>
-                </td>
-              </tr>
-              <tr>
-                <td>Moyenne Générale (CC et CT)</td>
-                <td>
-                  <strong>{{ sesamien.moyenneGenerale }}</strong>
-                </td>
-              </tr>
+              <div class="card-content">
+                <tr>
+                  <td>Nom</td>
+                  <td>
+                    <input
+                      *ngIf="isEditing"
+                      [(ngModel)]="sesamien.nom"
+                      type="text"
+                    />
+                    <strong *ngIf="!isEditing">{{ sesamien.nom }}</strong>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Prénom usuel</td>
+                  <td>
+                    <input
+                      *ngIf="isEditing"
+                      [(ngModel)]="sesamien.prenomUsuel"
+                      type="text"
+                    />
+                    <strong *ngIf="!isEditing">{{
+                      sesamien.prenomUsuel
+                    }}</strong>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Mention</td>
+                  <td>
+                    <select *ngIf="isEditing" [(ngModel)]="sesamien.mention">
+                      <option
+                        *ngFor="let mention of mentionOptions"
+                        [value]="mention"
+                      >
+                        {{ mention }}
+                      </option>
+                    </select>
+                    <span *ngIf="!isEditing">{{ sesamien.mention }}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Age</td>
+                  <td>
+                    <input
+                      *ngIf="isEditing"
+                      [(ngModel)]="sesamien.age"
+                      type="text"
+                    />
+                    <strong *ngIf="!isEditing">{{ sesamien.age }}</strong>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Promotion</td>
+                  <td>
+                    <input
+                      *ngIf="isEditing"
+                      [(ngModel)]="sesamien.promotion"
+                      type="text"
+                    />
+                    <strong *ngIf="!isEditing">{{ sesamien.promotion }}</strong>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Région d'origine</td>
+                  <td>
+                    <input
+                      *ngIf="isEditing"
+                      [(ngModel)]="sesamien.regionOrigine"
+                      type="text"
+                    />
+                    <strong *ngIf="!isEditing">{{
+                      sesamien.regionOrigine
+                    }}</strong>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Genre</td>
+                  <td>
+                    <div *ngIf="isEditing">
+                      <label>
+                        <input
+                          type="radio"
+                          name="genre"
+                          [(ngModel)]="sesamien.genre"
+                          [value]="Genre.M"
+                        />
+                        M
+                      </label>
+                      <label>
+                        <input
+                          type="radio"
+                          name="genre"
+                          [(ngModel)]="sesamien.genre"
+                          [value]="Genre.F"
+                        />
+                        F
+                      </label>
+                    </div>
+                    <strong *ngIf="!isEditing">{{ sesamien.genre }}</strong>
+                  </td>
+                </tr>
+                <div *ngIf="isAdmin && !isEditing" class="card-action center">
+                  <a (click)="enableEdit()">Edit info de base</a>
+                </div>
+                <div *ngIf="isEditing" class="card-action center">
+                  <a (click)="saveChanges()">Valider</a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s6">
+                  <h5 class="center">Semestre 1</h5>
+                  <tr>
+                    <td>Classement</td>
+                    <td>
+                      <strong>{{ sesamien.classement }}</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Moyenne Générale CC</td>
+                    <td>
+                      <strong>{{ sesamien.moyenneGeneraleCC }}</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Moyenne Générale CT</td>
+                    <td>
+                      <strong>{{ sesamien.moyenneGeneraleCT }}</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Moyenne Générale (CC et CT)</td>
+                    <td>
+                      <strong>{{ sesamien.moyenneGenerale }}</strong>
+                    </td>
+                  </tr>
+                </div>
+                <div class="col s6">
+                  <h5 class="center">Semestre 2</h5>
+                  <tr>
+                    <td>Classement</td>
+                    <td>
+                      <strong>{{ sesamien.classement }}</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Moyenne Générale CC</td>
+                    <td>
+                      <strong>{{ sesamien.moyenneGeneraleCC }}</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Moyenne Générale CT</td>
+                    <td>
+                      <strong>{{ sesamien.moyenneGeneraleCT }}</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Moyenne Générale (CC et CT)</td>
+                    <td>
+                      <strong>{{ sesamien.moyenneGenerale }}</strong>
+                    </td>
+                  </tr>
+                </div>
+              </div>
             </tbody>
           </table>
         </div>

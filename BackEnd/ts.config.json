@@ -6,7 +6,8 @@
         "outDir": "./built",
         "experimentalDecorators": true,
         "emitDecoratorMetaData": true,
-        "esModuleInterop": true 
+        "esModuleInterop": true,
+        "types": ["mocha", "node"]
     },
     "include": ["src/**/*"]
 }

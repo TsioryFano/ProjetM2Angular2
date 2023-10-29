@@ -36,13 +36,13 @@ export enum Genre {
 }
 
 export class Sesamien {
-    id: string = "";
+    id?: number;
     nom: string; // Nom de l'étudiant
     prenoms: string; // Prénoms de l'étudiant
     prenomUsuel: string; // Prénom usuel
     mention: Mention; // Sériation (S ou L)
     age: number; // Age de l'étudiant
-    promotion: string; // Promotion (par exemple, "P24")
+    promotion: number; // Promotion (par exemple, "P24")
     image: string; // Image de profil
     regionOrigine: RegionOrigine; // Région d'origine
     genre: Genre; // Genre (M ou F)
@@ -60,12 +60,13 @@ export class Sesamien {
     }[];
 
     constructor(
+
         nom: string = 'Entrer un nom ...',
         prenoms: string = 'Entrer des prénoms ...',
         prenomUsuel: string = '',
         mention: Mention = Mention.S,
         age: number = 0,
-        promotion: string = 'P24',
+        promotion: number = 24,
         image: string = '',
         regionOrigine: RegionOrigine = RegionOrigine.Fitovinany,
         genre: Genre = Genre.M,

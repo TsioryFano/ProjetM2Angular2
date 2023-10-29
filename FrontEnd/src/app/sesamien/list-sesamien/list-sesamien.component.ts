@@ -10,6 +10,8 @@ import { SesamienService } from '../sesamien.service';
 export class ListSesamienComponent implements OnInit{
 
   sesamienList: Sesamien[];  
+  isOpen = false;
+  modalData: any;
 
   constructor(
     private router: Router,
@@ -18,17 +20,37 @@ export class ListSesamienComponent implements OnInit{
 
     ngOnInit(){
       this.sesamienService.getSesamienList()
-      .subscribe(sesamienList => this.sesamienList = sesamienList );
+      .subscribe(sesamienList => {
+        if (sesamienList) {
+          this.sesamienList = sesamienList;
+        } else {
+          console.error("La liste des sesamien est null ou undefined");
+          }
+        }, 
+        error => console.error('Erreur lors de la récupération des sesamien:', error) 
+      );
+      this.sesamienService.modalState.subscribe(state => {
+        if (state.type === 'OPEN') {
+          this.isOpen = true;
+          this.modalData = state.data;
+        } else if (state.type === 'CLOSE') {
+          this.isOpen = false;
+          this.modalData = null;
+        }
+      });
     }  
 
-   /*
-    ngOnInit(){
-      this.sesamienService.getSesamienList()
-        .subscribe(sesamienList => this.sesamienList = sesamienList); 
-    }
-*/
   goToSesamien(sesamien: Sesamien) {
     this.router.navigate(['/sesamien', sesamien.id])
   }
 
+  onMoreVertClicked(sesamien: any) {
+    this.sesamienService.openModal(sesamien);
+  }
+
+  closeModal() {
+    this.sesamienService.closeModal();
+  }
 }
+
+

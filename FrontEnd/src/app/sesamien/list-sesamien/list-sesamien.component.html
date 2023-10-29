@@ -6,30 +6,34 @@
       <div
         (click)="goToSesamien(sesamien)"
         class="card horizontal"
-        sesamienBorderCard
+        appBorderCard
       >
-        <div class="card image">
-          <img [src]="sesamien.image" />
+        <div class="card-image">
+          <i *ngIf="!sesamien.image" class="material-icons user-icon"
+            >account_circle</i
+          >
+          <img *ngIf="sesamien.image" [src]="sesamien.image" />
         </div>
         <div class="card-stacked">
           <div class="card-content">
             <p>{{ sesamien.nom }}</p>
-            <p>{{ sesamien.prenoms }}</p>
-            <span
-              *ngFor="let mention of sesamien.notes"
-              class="{{ mention.codeUE | sesamienMentionColor }}"
-            >
-              {{ mention.codeUE }}: {{ mention.noteCC }}/{{ mention.noteCT }}
-            </span>
+            <p>{{ sesamien.prenomUsuel }}</p>
+            <p>Age: {{ sesamien.age }}</p>
+            <p>Mention: {{ sesamien.mention }}</p>
+            <p>Genre: {{ sesamien.genre }}</p>
+            <p>Promotion{{ sesamien.promotion }}</p>
+          </div>
+          <div class="card-content">
+            <p>Moyenne Générale: {{ sesamien.moyenneGenerale }}</p>
+            <p>Classement: {{ sesamien.classement }}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 <a
-  class="btn-floatting btn-large waves-effect waves-light red z-depth-3"
+  class="btn-floating btn-large waves-effect waves-light red z-depth-3"
   style="position: fixed; bottom: 25px; right: 25px"
   routerLink="/sesamien/add"
 >

@@ -4,14 +4,14 @@
       <div class="card-panel">
         <!-- Sesamien name -->
         <div class="form-group">
-          <label for="name">Nom</label>
+          <label for="nom">Nom</label>
           <input
             type="text"
             class="form-control"
-            id="name"
+            id="nom"
             required
             [(ngModel)]="sesamien.nom"
-            name="name"
+            name="nom"
             #name="ngModel"
           />
           <div
@@ -22,6 +22,20 @@
           </div>
         </div>
 
+        <!-- Sesamien prenoms -->
+        <div class="form-group">
+          <label for="prenoms">Prénoms</label>
+          <input
+            type="text"
+            class="form-control"
+            id="prenoms"
+            required
+            [(ngModel)]="sesamien.prenoms"
+            name="prenoms"
+            #prenoms="ngModel"
+          />
+        </div>
+
         <!-- Sesamien prenomUsuel -->
         <div class="form-group">
           <label for="prenomUsuel">Prénom usuel</label>
@@ -29,6 +43,7 @@
             type="text"
             class="form-control"
             id="prenomUsuel"
+            required
             [(ngModel)]="sesamien.prenomUsuel"
             name="prenomUsuel"
             #prenomUsuel="ngModel"
@@ -38,17 +53,49 @@
         <!-- Sesamien mention -->
         <div class="form-group">
           <label for="mention">Mention</label>
-          <select
+          <input
             class="form-control"
             id="mention"
             required
             [(ngModel)]="sesamien.mention"
             name="mention"
+            #mention="ngModel"
+          />
+        </div>
+
+        <!-- Sesamien genre -->
+        <div class="form-group">
+          <label for="genre">Genre</label>
+          <input
+            class="form-control"
+            id="genre"
+            required
+            [(ngModel)]="sesamien.genre"
+            name="genre"
+            #genre="ngModel"
+          />
+          <option [ngValue]="genre" *ngFor="let genre of Object.values(Genre)">
+            {{ genre }}
+          </option>
+        </div>
+
+        <!-- Sesamien regionOrigine -->
+        <div class="form-group">
+          <label for="regionOrigine">Région d'origine</label>
+          <input
+            class="form-control"
+            id="regionOrigine"
+            required
+            [(ngModel)]="sesamien.regionOrigine"
+            name="regionOrigine"
+            #regionOrigine="ngModel"
+          />
+          <option
+            [ngValue]="region"
+            *ngFor="let region of Object.values(RegionOrigine)"
           >
-            <option [ngValue]="mention" *ngFor="let mention of mentions">
-              {{ mention }}
-            </option>
-          </select>
+            {{ region }}
+          </option>
         </div>
 
         <!-- Sesamien age -->
@@ -65,18 +112,48 @@
           />
         </div>
 
+        <!-- Sesamien classement -->
+        <div class="form-group">
+          <label for="classement">Classement</label>
+          <input
+            type="number"
+            class="form-control"
+            id="classement"
+            required
+            [(ngModel)]="sesamien.classement"
+            name="classement"
+            #classement="ngModel"
+          />
+        </div>
+
+        <!-- Sesamien image -->
+        <div class="form-group">
+          <label for="image">Image de profil (URL)</label>
+          <input
+            type="text"
+            class="form-control"
+            id="image"
+            required
+            [(ngModel)]="sesamien.image"
+            name="image"
+            #image="ngModel"
+          />
+        </div>
+
         <!-- Sesamien promotion -->
         <div class="form-group">
           <label for="promotion">Promotion</label>
           <input
-            type="text"
+            type="number"
             class="form-control"
             id="promotion"
             required
             [(ngModel)]="sesamien.promotion"
             name="promotion"
             #promotion="ngModel"
+            value="24"
           />
+          <p>Value of promotion: {{ sesamien.promotion }}</p>
         </div>
 
         <!-- Submit button -->

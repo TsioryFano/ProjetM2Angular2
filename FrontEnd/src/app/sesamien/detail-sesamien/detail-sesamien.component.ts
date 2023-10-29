@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Sesamien } from '../sesamien';
+import { Mention, Sesamien, Genre } from '../sesamien';
 import { SesamienService } from '../sesamien.service';
 
 @Component({
@@ -11,6 +11,12 @@ export class DetailSesamienComponent implements OnInit {
 
   sesamienList: Sesamien [];
   sesamien: Sesamien|undefined;
+  isAdmin: boolean = true; 
+  isEditing: boolean = false;
+  mentionOptions: string[] = [Mention.S, Mention.L];
+  Genre = Genre;
+  //Genre: string[] = [Genre.F, Genre.M];
+
   
   constructor (
     private route: ActivatedRoute,
@@ -38,6 +44,14 @@ export class DetailSesamienComponent implements OnInit {
   
   goToEditSesamien(sesamien: Sesamien){
     this.router.navigate(['/edit/sesamien',sesamien.id]);
+  }
+
+  enableEdit(): void {
+    this.isEditing = true;
+  }
+
+  saveChanges(): void {
+    this.isEditing = false;
   }
 
 }

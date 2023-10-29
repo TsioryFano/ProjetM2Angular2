@@ -42,7 +42,7 @@ export class Sesamien {
     prenomUsuel: string; // Prénom usuel
     mention: Mention; // Sériation (S ou L)
     age: number; // Age de l'étudiant
-    promotion: string; // Promotion (par exemple, "P24")
+    promotion: number; // Promotion (par exemple, "P24")
     image: string; // Image de profil
     regionOrigine: RegionOrigine; // Région d'origine
     genre: Genre; // Genre (M ou F)
@@ -65,7 +65,7 @@ export class Sesamien {
         prenomUsuel: string = '',
         mention: Mention = Mention.S,
         age: number = 0,
-        promotion: string = 'P24',
+        promotion: number = 24,
         image: string = '',
         regionOrigine: RegionOrigine = RegionOrigine.Fitovinany,
         genre: Genre = Genre.M,
