@@ -3,9 +3,9 @@ import { getSesamiens, getSesamienById, updateSesamien, createSesamien } from ".
 
 const router = express.Router();
 
-router.get("/sesamiens", getSesamiens);
+router.get("/", getSesamiens);
 
-router.get("/sesamien/:sesamienId", getSesamienById);
+router.get("/:sesamienId", getSesamienById);
 
 router.put("/:sesamienId", updateSesamien);
 

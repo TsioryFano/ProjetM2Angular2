@@ -1,0 +1,120 @@
+/* Stylisation générale */
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+  
+  .search-container {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  /* Stylisation des cartes */
+  mat-card {
+    display: inline-block; /* Assure que les cards soient côte à côte */
+    vertical-align: top;  
+    margin: 20px;  
+    position: relative;
+  transition: transform 0.3s ease-in-out, 
+  box-shadow 0.3s ease-in-out;  
+}
+mat-card-header .card-content {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 20px;
+  }
+  
+  mat-card-content .academic-info {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  mat-card-footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+  }
+  
+  mat-fab-button {
+    border-radius: 50%;
+    padding: 10px;
+    text-align: center;
+  }
+mat-card:hover {
+    transform: scale(1.05); /* zoom léger lors du survol */
+    z-index: 1;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* ombre lors du survol */
+    min-width: 280px; /* Vous pouvez ajuster cette valeur selon vos préférences */
+    max-width: 90%; 
+    overflow: visible;
+}
+  .horizontal-card {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc; /* encadrer les informations */
+    padding: 10px;
+  }
+  
+  mat-card-avatar {
+    margin-right: 10px;
+  }
+  
+  mat-icon {
+    font-size: 48px;
+    height: 48px;
+    width: 48px;
+  }
+  
+  .card-content {
+    flex: 1; /* prend tout l'espace restant à côté de l'avatar */
+    margin-left: 20px;
+  }
+  
+  .general-info, .academic-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  /* Stylisation du bouton d'action flottant */
+  .floating-action-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 56px;  /* Définir une largeur fixe */
+    height: 56px;  /* Définir une hauteur fixe */
+    border-radius: 50%;  /* Rend le bouton parfaitement rond */
+    background-color: #3f51b5; /* couleur de fond */
+    color: white; /* couleur du texte/icon */
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3); /* ombre */
+    display: flex;  /* Utiliser flexbox pour centrer le contenu */
+    justify-content: center;  /* Centrer l'icône horizontalement */
+    align-items: center;  /* Centrer l'icône verticalement */
+    padding: 0;  /* Retirer les marges internes */
+  }
+  .floating-action-button:hover {
+    background-color: #5c6bc0; /* changement de couleur lors du survol */
+  }
+  /* Réduire la taille de l'icône si nécessaire */
+.floating-action-button mat-icon {
+    font-size: 24px; 
+  }
+  
+  /* Stylisation de l'état */
+  .etat {
+    width: auto;
+    text-align: right; /* aligne le texte à gauche */
+    padding: 8px 12px;
+    color: white;
+    background-color: #3f51b5; /* une couleur de fond pour le distinguer */
+    border-radius: 5px; /* bords arrondis pour une apparence plus douce */ 
+    font-weight: bold; /* texte en gras pour */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  }
+  

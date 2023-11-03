@@ -3,6 +3,11 @@ export enum Mention {
     L = "L"
 }
 
+export enum Etat {
+    Actif = "Actif",
+    Inactif = "Inactif"
+}
+
 export enum RegionOrigine {
     Fitovinany = "Fitovinany",
     AtsimoAndrefana = "Atsimo Andrefana",
@@ -46,6 +51,7 @@ export class Sesamien {
     image: string; // Image de profil
     regionOrigine: RegionOrigine; // Région d'origine
     genre: Genre; // Genre (M ou F)
+    etat: Etat;
     classement: number; // Classement de l'étudiant
     moyenneGeneraleCC: number; // Moyenne générale des contrôles continus
     moyenneGeneraleCT: number; // Moyenne générale des contrôles terminaux
@@ -60,7 +66,6 @@ export class Sesamien {
     }[];
 
     constructor(
-
         nom: string = 'Entrer un nom ...',
         prenoms: string = 'Entrer des prénoms ...',
         prenomUsuel: string = '',
@@ -70,6 +75,7 @@ export class Sesamien {
         image: string = '',
         regionOrigine: RegionOrigine = RegionOrigine.Fitovinany,
         genre: Genre = Genre.M,
+        etat: Etat = Etat.Actif,
         classement: number = 0,
         moyenneGeneraleCC: number = 0,
         moyenneGeneraleCT: number = 0,
@@ -85,6 +91,7 @@ export class Sesamien {
         this.image = image;
         this.regionOrigine = regionOrigine;
         this.genre = genre;
+        this.etat = etat;
         this.classement = classement;
         this.moyenneGeneraleCC = moyenneGeneraleCC;
         this.moyenneGeneraleCT = moyenneGeneraleCT;

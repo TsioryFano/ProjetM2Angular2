@@ -1,14 +1,14 @@
-import { Sesamien, Mention, RegionOrigine, Genre } from "./sesamien";
+import { Sesamien, Mention, RegionOrigine, Genre, Etat} from "./sesamien";
 
 export const SESAMIENS: Sesamien[] = [
     {
-        id: 1,
+        id: "1",
         nom: "Nom1",
         prenoms: "Prénoms1",
         prenomUsuel: "PrénomUsuel1",
         mention: Mention.S,
         age: 20,
-        promotion: 22,
+        promotion: 24,
         image: "imageEtudiant1",
         regionOrigine: RegionOrigine.Fitovinany,
         genre: Genre.M,
@@ -16,6 +16,7 @@ export const SESAMIENS: Sesamien[] = [
         moyenneGeneraleCC: 15.5,
         moyenneGeneraleCT: 13.7,
         moyenneGenerale: 14.6,
+        etat: Etat.Actif,
         notes: [
             {   nomUE: "Activités Numériques", 
                 codeUE: "MATHEMATS", 
@@ -38,7 +39,7 @@ export const SESAMIENS: Sesamien[] = [
         ]
     },
     {
-        id: 2,
+        id: "2",
         nom: "Nom2",
         prenoms: "Prénoms2",
         prenomUsuel: "PrénomUsuel2",
@@ -52,6 +53,7 @@ export const SESAMIENS: Sesamien[] = [
         moyenneGeneraleCC: 14.8,
         moyenneGeneraleCT: 12.9,
         moyenneGenerale: 13.8,
+        etat: Etat.Actif,
         notes: [
             { 
                 nomUE: "Français, Langue de l'enseignement supérieur",
@@ -64,7 +66,7 @@ export const SESAMIENS: Sesamien[] = [
         ]
     },
     {
-        id: 3,
+        id: "3",
         nom: "Nom3",
         prenoms: "Prénoms3",
         prenomUsuel: "PrénomUsuel3",
@@ -78,6 +80,7 @@ export const SESAMIENS: Sesamien[] = [
         moyenneGeneraleCC: 16.2,
         moyenneGeneraleCT: 14.5,
         moyenneGenerale: 15.4,
+        etat: Etat.Actif,
         notes: [
             { 
                 nomUE: "Mathématiques", 
@@ -97,7 +100,7 @@ export const SESAMIENS: Sesamien[] = [
     },
 
     {
-        id: 4,
+        id: "4",
         nom: "Nom4",
         prenoms: "Prénoms4",
         prenomUsuel: "PrénomUsuel4",
@@ -111,6 +114,7 @@ export const SESAMIENS: Sesamien[] = [
         moyenneGeneraleCC: 14.3,
         moyenneGeneraleCT: 13.2,
         moyenneGenerale: 13.7,
+        etat: Etat.Actif,
         notes: [
             { 
                 nomUE: "Philosophie", 
@@ -130,7 +134,7 @@ export const SESAMIENS: Sesamien[] = [
         ]
     },
     {
-        id: 5,
+        id: "5",
         nom: "Nom5",
         prenoms: "Prénoms5",
         prenomUsuel: "PrénomUsuel5",
@@ -144,6 +148,7 @@ export const SESAMIENS: Sesamien[] = [
         moyenneGeneraleCC: 15.1,
         moyenneGeneraleCT: 13.9,
         moyenneGenerale: 14.5,
+        etat: Etat.Actif,
         notes: [
             { 
                 nomUE: "Chimie", 
@@ -162,7 +167,7 @@ export const SESAMIENS: Sesamien[] = [
         ]
     },
     {
-        id: 6,
+        id: "6",
         nom: "Nom6",
         prenoms: "Prénoms6",
         prenomUsuel: "PrénomUsuel6",
@@ -176,6 +181,7 @@ export const SESAMIENS: Sesamien[] = [
         moyenneGeneraleCC: 15.0,
         moyenneGeneraleCT: 13.8,
         moyenneGenerale: 14.4,
+        etat: Etat.Actif,
         notes: [
             { 
                 nomUE: "Physiologie", 
@@ -194,7 +200,7 @@ export const SESAMIENS: Sesamien[] = [
         ]
     },
     {
-        id: 7,
+        id:"7" ,
         nom: "Nom7",
         prenoms: "Prénoms7",
         prenomUsuel: "PrénomUsuel7",
@@ -208,6 +214,7 @@ export const SESAMIENS: Sesamien[] = [
         moyenneGeneraleCC: 14.7,
         moyenneGeneraleCT: 12.5,
         moyenneGenerale: 13.6,
+        etat: Etat.Actif,
         notes: [
             { 
                 nomUE: "Littérature", 
@@ -226,7 +233,7 @@ export const SESAMIENS: Sesamien[] = [
         ]
     },
     {
-        id: 8,
+        id: "8",
         nom: "Nom8",
         prenoms: "Prénoms8",
         prenomUsuel: "PrénomUsuel8",
@@ -240,6 +247,7 @@ export const SESAMIENS: Sesamien[] = [
         moyenneGeneraleCC: 15.3,
         moyenneGeneraleCT: 13.9,
         moyenneGenerale: 14.6,
+        etat: Etat.Actif,
         notes: [
             { 
                 nomUE: "Informatique", 
@@ -258,7 +266,7 @@ export const SESAMIENS: Sesamien[] = [
         ]
     },
     {
-        id: 9,
+        id: "9",
         nom: "Nom9",
         prenoms: "Prénoms9",
         prenomUsuel: "PrénomUsuel9",
@@ -272,6 +280,7 @@ export const SESAMIENS: Sesamien[] = [
         moyenneGeneraleCC: 14.9,
         moyenneGeneraleCT: 13.4,
         moyenneGenerale: 14.2,
+        etat: Etat.Actif,
         notes: [
             { 
                 nomUE: "Philosophie", 
@@ -290,7 +299,7 @@ export const SESAMIENS: Sesamien[] = [
         ]
     },
     {
-        id: 10,
+        id: "10",
         nom: "Nom10",
         prenoms: "Prénoms10",
         prenomUsuel: "PrénomUsuel10",
@@ -304,6 +313,7 @@ export const SESAMIENS: Sesamien[] = [
         moyenneGeneraleCC: 15.7,
         moyenneGeneraleCT: 14.0,
         moyenneGenerale: 14.9,
+        etat: Etat.Actif,
         notes: [
             { 
                 nomUE: "Chimie", 

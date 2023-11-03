@@ -1,173 +1,149 @@
-<form *ngIf="sesamien" (ngSubmit)="onSubmit()" #sesamienForm="ngForm">
-  <div class="row">
-    <div class="col s8 offset-s2">
-      <div class="card-panel">
-        <!-- Sesamien name -->
-        <div class="form-group">
-          <label for="nom">Nom</label>
-          <input
-            type="text"
-            class="form-control"
-            id="nom"
-            required
-            [(ngModel)]="sesamien.nom"
-            name="nom"
-            #name="ngModel"
-          />
-          <div
-            [hidden]="name.valid || name.pristine"
-            class="card-panel red accent-1"
+<!-- Main container for the form with flex layout -->
+<div
+  fxLayout="column"
+  fxLayoutAlign="center center"
+  fxLayoutGap="16px"
+  class="app-sesamien-form"
+>
+  <!-- Card container for the sesamien form -->
+  <mat-card *ngIf="sesamien">
+    <!-- Form definition -->
+    <form (ngSubmit)="onSubmit()" #sesamienForm="ngForm">
+      <!-- Field for Sesamien name -->
+      <mat-form-field appearance="fill">
+        <mat-label>Nom</mat-label>
+        <input
+          matInput
+          type="text"
+          id="nom"
+          required
+          [(ngModel)]="sesamien.nom"
+          name="nom"
+          #name="ngModel"
+        />
+        <mat-error *ngIf="!name.valid && !name.pristine"
+          >Le nom du Sésamien est requis.</mat-error
+        >
+      </mat-form-field>
+
+      <!-- Field for Sesamien pronoms -->
+      <mat-form-field appearance="fill">
+        <mat-label>Prénoms</mat-label>
+        <input
+          matInput
+          type="text"
+          id="prenoms"
+          required
+          [(ngModel)]="sesamien.prenoms"
+          name="prenoms"
+        />
+      </mat-form-field>
+
+      <!-- Field for Sesamien prenomUsuel -->
+      <mat-form-field appearance="fill">
+        <mat-label>Prénom usuel</mat-label>
+        <input
+          matInput
+          type="text"
+          id="prenomUsuel"
+          required
+          [(ngModel)]="sesamien.prenomUsuel"
+          name="prenomUsuel"
+        />
+      </mat-form-field>
+
+      <!-- Dropdown  for Sesamien mention -->
+      <mat-form-field appearance="fill">
+        <mat-label>Mention</mat-label>
+        <mat-select [(ngModel)]="sesamien.mention" name="mention">
+          <mat-option
+            *ngFor="let mention of Object.values(Mention)"
+            [value]="mention"
           >
-            Le nom du Sésamien est requis.
-          </div>
-        </div>
+            {{ mention }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-        <!-- Sesamien prenoms -->
-        <div class="form-group">
-          <label for="prenoms">Prénoms</label>
-          <input
-            type="text"
-            class="form-control"
-            id="prenoms"
-            required
-            [(ngModel)]="sesamien.prenoms"
-            name="prenoms"
-            #prenoms="ngModel"
-          />
-        </div>
-
-        <!-- Sesamien prenomUsuel -->
-        <div class="form-group">
-          <label for="prenomUsuel">Prénom usuel</label>
-          <input
-            type="text"
-            class="form-control"
-            id="prenomUsuel"
-            required
-            [(ngModel)]="sesamien.prenomUsuel"
-            name="prenomUsuel"
-            #prenomUsuel="ngModel"
-          />
-        </div>
-
-        <!-- Sesamien mention -->
-        <div class="form-group">
-          <label for="mention">Mention</label>
-          <input
-            class="form-control"
-            id="mention"
-            required
-            [(ngModel)]="sesamien.mention"
-            name="mention"
-            #mention="ngModel"
-          />
-        </div>
-
-        <!-- Sesamien genre -->
-        <div class="form-group">
-          <label for="genre">Genre</label>
-          <input
-            class="form-control"
-            id="genre"
-            required
-            [(ngModel)]="sesamien.genre"
-            name="genre"
-            #genre="ngModel"
-          />
-          <option [ngValue]="genre" *ngFor="let genre of Object.values(Genre)">
+      <!-- Dropdown  for Sesamien genre -->
+      <mat-form-field appearance="fill">
+        <mat-label>Genre</mat-label>
+        <mat-select [(ngModel)]="sesamien.genre" name="genre">
+          <mat-option
+            *ngFor="let genre of Object.values(Genre)"
+            [value]="genre"
+          >
             {{ genre }}
-          </option>
-        </div>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-        <!-- Sesamien regionOrigine -->
-        <div class="form-group">
-          <label for="regionOrigine">Région d'origine</label>
-          <input
-            class="form-control"
-            id="regionOrigine"
-            required
-            [(ngModel)]="sesamien.regionOrigine"
-            name="regionOrigine"
-            #regionOrigine="ngModel"
-          />
-          <option
-            [ngValue]="region"
+      <!-- Dropdown  for Sesamien regionOrigine -->
+      <mat-form-field appearance="fill">
+        <mat-label>Région d'origine</mat-label>
+        <mat-select [(ngModel)]="sesamien.regionOrigine" name="regionOrigine">
+          <mat-option
             *ngFor="let region of Object.values(RegionOrigine)"
+            [value]="region"
           >
             {{ region }}
-          </option>
-        </div>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-        <!-- Sesamien age -->
-        <div class="form-group">
-          <label for="age">Âge</label>
-          <input
-            type="number"
-            class="form-control"
-            id="age"
-            required
-            [(ngModel)]="sesamien.age"
-            name="age"
-            #age="ngModel"
-          />
-        </div>
+      <!-- Field for Sesamien age -->
+      <mat-form-field appearance="fill">
+        <mat-label>Âge</mat-label>
+        <input
+          matInput
+          type="number"
+          id="age"
+          required
+          [(ngModel)]="sesamien.age"
+          name="age"
+        />
+      </mat-form-field>
 
-        <!-- Sesamien classement -->
-        <div class="form-group">
-          <label for="classement">Classement</label>
-          <input
-            type="number"
-            class="form-control"
-            id="classement"
-            required
-            [(ngModel)]="sesamien.classement"
-            name="classement"
-            #classement="ngModel"
-          />
-        </div>
+      <!--  Field forSesamien image -->
+      <mat-form-field appearance="fill">
+        <mat-label>Image de profil (URL)</mat-label>
+        <input
+          matInput
+          type="text"
+          id="image"
+          required
+          [(ngModel)]="sesamien.image"
+          name="image"
+        />
+      </mat-form-field>
 
-        <!-- Sesamien image -->
-        <div class="form-group">
-          <label for="image">Image de profil (URL)</label>
-          <input
-            type="text"
-            class="form-control"
-            id="image"
-            required
-            [(ngModel)]="sesamien.image"
-            name="image"
-            #image="ngModel"
-          />
-        </div>
+      <!-- Field for Sesamien promotion -->
+      <mat-form-field appearance="fill">
+        <mat-label>Promotion</mat-label>
+        <input
+          matInput
+          type="number"
+          id="promotion"
+          required
+          [(ngModel)]="sesamien.promotion"
+          name="promotion"
+          value="24"
+        />
+      </mat-form-field>
+      <!-- Display value of promotion for debugging or user information -->
+      <p>Value of promotion: {{ sesamien.promotion }}</p>
 
-        <!-- Sesamien promotion -->
-        <div class="form-group">
-          <label for="promotion">Promotion</label>
-          <input
-            type="number"
-            class="form-control"
-            id="promotion"
-            required
-            [(ngModel)]="sesamien.promotion"
-            name="promotion"
-            #promotion="ngModel"
-            value="24"
-          />
-          <p>Value of promotion: {{ sesamien.promotion }}</p>
-        </div>
-
-        <!-- Submit button -->
-        <div class="divider"></div>
-        <div class="section center">
-          <button
-            type="submit"
-            class="waves-effect waves-light btn"
-            [disabled]="!sesamienForm.form.valid"
-          >
-            Valider
-          </button>
-        </div>
+      <!-- Submit button -->
+      <div class="submit-section">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="!sesamienForm.form.valid"
+        >
+          Valider
+        </button>
       </div>
-    </div>
-  </div>
-</form>
+    </form>
+  </mat-card>
+</div>

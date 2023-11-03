@@ -1,24 +1,21 @@
-<div class="row">
-  <div class="col 12 m6 offset-m3">
-    <div class="card">
-      <div class="card-content">
-        <div class="input-field">
-          <input
-            #searchBox
-            (keyup)="search(searchBox.value)"
-            placeholder="Rechercher un Sesamien"
-          />
-          <div class="collection">
-            <a
-              *ngFor="let sesamien of sesamien$ | async"
-              (click)="goToDetail(sesamien)"
-              class="collection-item"
-            >
-              {{ sesamien.nom }}
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<mat-card class="center-content">
+  <mat-card-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Rechercher un Sesamien</mat-label>
+      <input
+        matInput
+        #searchBox
+        (keyup)="search(searchBox.value)"
+        placeholder="Rechercher un Sesamien"
+      />
+    </mat-form-field>
+    <mat-list>
+      <mat-list-item
+        *ngFor="let sesamien of sesamien$ | async"
+        (click)="goToDetail(sesamien)"
+      >
+        {{ sesamien.nom }}
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

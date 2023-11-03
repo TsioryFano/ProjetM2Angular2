@@ -4,3 +4,40 @@
 ng-invalid:not(form){
     border-left: 5px solid #A94442;
 }
+/* Pour que le formulaire soit centré, notamment sur de grands écrans */
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 750px;
+}
+
+mat-card {
+    padding: 20px;
+    max-width: 600px; /* vous pouvez ajuster cette valeur selon vos besoins */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+mat-form-field {
+    width: 100%; /* s'assurer que les champs de formulaire occupent toute la largeur disponible */
+    margin-bottom: 16px; /* espace entre les champs de formulaire */
+}
+
+/* Pour espacer les éléments uniformément et les centrer */
+[fxLayoutGap], [fxLayoutAlign] {
+    margin: 0 auto;
+    
+}
+
+.submit-section {
+    text-align: center;
+    margin-top: 20px;
+}
+.form-container {
+    width: 100%;
+    overflow-y: auto;
+}
+.app-sesamien-form {
+    margin-top: 100px; /* Ajuster la valeur en fonction de l'espace souhaité. */
+}

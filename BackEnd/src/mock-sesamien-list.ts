@@ -1,4 +1,4 @@
-import { Sesamien, Mention, RegionOrigine, Genre } from "./sesamien";
+import { Sesamien, Mention, RegionOrigine, Genre, Etat} from "./models/sesamien";
 
 export const SESAMIENS: Sesamien[] = [
     {
@@ -16,6 +16,7 @@ export const SESAMIENS: Sesamien[] = [
         moyenneGeneraleCC: 15.5,
         moyenneGeneraleCT: 13.7,
         moyenneGenerale: 14.6,
+        etat: Etat.Actif,
         notes: [
             {   nomUE: "Activités Numériques", 
                 codeUE: "MATHEMATS", 
@@ -52,6 +53,7 @@ export const SESAMIENS: Sesamien[] = [
         moyenneGeneraleCC: 14.8,
         moyenneGeneraleCT: 12.9,
         moyenneGenerale: 13.8,
+        etat: Etat.Actif,
         notes: [
             { 
                 nomUE: "Français, Langue de l'enseignement supérieur",
@@ -78,6 +80,7 @@ export const SESAMIENS: Sesamien[] = [
         moyenneGeneraleCC: 16.2,
         moyenneGeneraleCT: 14.5,
         moyenneGenerale: 15.4,
+        etat: Etat.Actif,
         notes: [
             { 
                 nomUE: "Mathématiques", 
@@ -111,6 +114,7 @@ export const SESAMIENS: Sesamien[] = [
         moyenneGeneraleCC: 14.3,
         moyenneGeneraleCT: 13.2,
         moyenneGenerale: 13.7,
+        etat: Etat.Actif,
         notes: [
             { 
                 nomUE: "Philosophie", 
@@ -144,6 +148,7 @@ export const SESAMIENS: Sesamien[] = [
         moyenneGeneraleCC: 15.1,
         moyenneGeneraleCT: 13.9,
         moyenneGenerale: 14.5,
+        etat: Etat.Actif,
         notes: [
             { 
                 nomUE: "Chimie", 
@@ -176,6 +181,7 @@ export const SESAMIENS: Sesamien[] = [
         moyenneGeneraleCC: 15.0,
         moyenneGeneraleCT: 13.8,
         moyenneGenerale: 14.4,
+        etat: Etat.Actif,
         notes: [
             { 
                 nomUE: "Physiologie", 
@@ -208,6 +214,7 @@ export const SESAMIENS: Sesamien[] = [
         moyenneGeneraleCC: 14.7,
         moyenneGeneraleCT: 12.5,
         moyenneGenerale: 13.6,
+        etat: Etat.Actif,
         notes: [
             { 
                 nomUE: "Littérature", 
@@ -240,6 +247,7 @@ export const SESAMIENS: Sesamien[] = [
         moyenneGeneraleCC: 15.3,
         moyenneGeneraleCT: 13.9,
         moyenneGenerale: 14.6,
+        etat: Etat.Actif,
         notes: [
             { 
                 nomUE: "Informatique", 
@@ -272,6 +280,7 @@ export const SESAMIENS: Sesamien[] = [
         moyenneGeneraleCC: 14.9,
         moyenneGeneraleCT: 13.4,
         moyenneGenerale: 14.2,
+        etat: Etat.Actif,
         notes: [
             { 
                 nomUE: "Philosophie", 
@@ -304,6 +313,7 @@ export const SESAMIENS: Sesamien[] = [
         moyenneGeneraleCC: 15.7,
         moyenneGeneraleCT: 14.0,
         moyenneGenerale: 14.9,
+        etat: Etat.Actif,
         notes: [
             { 
                 nomUE: "Chimie", 

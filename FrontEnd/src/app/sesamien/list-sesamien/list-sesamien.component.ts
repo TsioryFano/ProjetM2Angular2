@@ -5,7 +5,8 @@ import { SesamienService } from '../sesamien.service';
 
 @Component({
   selector: 'app-list-sesamien',
-  templateUrl: './list-sesamien.component.html'
+  templateUrl: './list-sesamien.component.html',
+  styleUrls: ['./list-sesamien.component.css']
 })
 export class ListSesamienComponent implements OnInit{
 

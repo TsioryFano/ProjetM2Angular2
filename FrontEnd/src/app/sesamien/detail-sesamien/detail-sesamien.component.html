@@ -1,186 +1,94 @@
 <div *ngIf="sesamien" class="row">
+  <!-- Colonne principale centrée -->
   <div class="col s12 m8 offset-m2">
-    <h2 class="header center">{{ sesamien.nom }}</h2>
-    <div class="card horizontal hoverable">
-      <div class="card-image">
-        <img [src]="sesamien.image" />
-      </div>
-      <div class="card-stacked">
-        <div class="card-content">
-          <table class="bordered striped">
-            <tbody>
-              <div class="card-content">
-                <tr>
-                  <td>Nom</td>
-                  <td>
-                    <input
-                      *ngIf="isEditing"
-                      [(ngModel)]="sesamien.nom"
-                      type="text"
-                    />
-                    <strong *ngIf="!isEditing">{{ sesamien.nom }}</strong>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Prénom usuel</td>
-                  <td>
-                    <input
-                      *ngIf="isEditing"
-                      [(ngModel)]="sesamien.prenomUsuel"
-                      type="text"
-                    />
-                    <strong *ngIf="!isEditing">{{
-                      sesamien.prenomUsuel
-                    }}</strong>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Mention</td>
-                  <td>
-                    <select *ngIf="isEditing" [(ngModel)]="sesamien.mention">
-                      <option
-                        *ngFor="let mention of mentionOptions"
-                        [value]="mention"
-                      >
-                        {{ mention }}
-                      </option>
-                    </select>
-                    <span *ngIf="!isEditing">{{ sesamien.mention }}</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Age</td>
-                  <td>
-                    <input
-                      *ngIf="isEditing"
-                      [(ngModel)]="sesamien.age"
-                      type="text"
-                    />
-                    <strong *ngIf="!isEditing">{{ sesamien.age }}</strong>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Promotion</td>
-                  <td>
-                    <input
-                      *ngIf="isEditing"
-                      [(ngModel)]="sesamien.promotion"
-                      type="text"
-                    />
-                    <strong *ngIf="!isEditing">{{ sesamien.promotion }}</strong>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Région d'origine</td>
-                  <td>
-                    <input
-                      *ngIf="isEditing"
-                      [(ngModel)]="sesamien.regionOrigine"
-                      type="text"
-                    />
-                    <strong *ngIf="!isEditing">{{
-                      sesamien.regionOrigine
-                    }}</strong>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Genre</td>
-                  <td>
-                    <div *ngIf="isEditing">
-                      <label>
-                        <input
-                          type="radio"
-                          name="genre"
-                          [(ngModel)]="sesamien.genre"
-                          [value]="Genre.M"
-                        />
-                        M
-                      </label>
-                      <label>
-                        <input
-                          type="radio"
-                          name="genre"
-                          [(ngModel)]="sesamien.genre"
-                          [value]="Genre.F"
-                        />
-                        F
-                      </label>
-                    </div>
-                    <strong *ngIf="!isEditing">{{ sesamien.genre }}</strong>
-                  </td>
-                </tr>
-                <div *ngIf="isAdmin && !isEditing" class="card-action center">
-                  <a (click)="enableEdit()">Edit info de base</a>
-                </div>
-                <div *ngIf="isEditing" class="card-action center">
-                  <a (click)="saveChanges()">Valider</a>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col s6">
-                  <h5 class="center">Semestre 1</h5>
-                  <tr>
-                    <td>Classement</td>
-                    <td>
-                      <strong>{{ sesamien.classement }}</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Moyenne Générale CC</td>
-                    <td>
-                      <strong>{{ sesamien.moyenneGeneraleCC }}</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Moyenne Générale CT</td>
-                    <td>
-                      <strong>{{ sesamien.moyenneGeneraleCT }}</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Moyenne Générale (CC et CT)</td>
-                    <td>
-                      <strong>{{ sesamien.moyenneGenerale }}</strong>
-                    </td>
-                  </tr>
-                </div>
-                <div class="col s6">
-                  <h5 class="center">Semestre 2</h5>
-                  <tr>
-                    <td>Classement</td>
-                    <td>
-                      <strong>{{ sesamien.classement }}</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Moyenne Générale CC</td>
-                    <td>
-                      <strong>{{ sesamien.moyenneGeneraleCC }}</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Moyenne Générale CT</td>
-                    <td>
-                      <strong>{{ sesamien.moyenneGeneraleCT }}</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Moyenne Générale (CC et CT)</td>
-                    <td>
-                      <strong>{{ sesamien.moyenneGenerale }}</strong>
-                    </td>
-                  </tr>
-                </div>
-              </div>
-            </tbody>
-          </table>
-        </div>
-        <div class="card-action">
-          <a (click)="goToSesamienList()">Retour</a>
-          <a (click)="goToEditSesamien(sesamien)">Editer</a>
-          <a (click)="deleteSesamien(sesamien)">Supprimer</a>
-        </div>
-      </div>
-    </div>
+    <!-- En-tête affichant le nom du sesamien -->
+    <h2 mat-header class="header center">{{ sesamien.nom }}</h2>
+
+    <!-- Carte d'information principale -->
+    <mat-card class="example-card">
+      <!-- Section de l'image -->
+      <mat-card-header>
+        <img
+          mat-card-avatar
+          [src]="sesamien.image"
+          alt="Photo de {{ sesamien.nom }}"
+        />
+      </mat-card-header>
+
+      <!-- Contenu de la carte -->
+      <mat-card-content>
+        <!-- Tableau des détails du sesamien -->
+        <table mat-table class="bordered striped">
+          <tbody>
+            <!-- ... ajoutez les autres propriétés ici ... -->
+            <tr>
+              <td>Nom</td>
+              <td>
+                <mat-form-field *ngIf="isEditing">
+                  <input matInput [(ngModel)]="sesamien.nom" />
+                </mat-form-field>
+                <strong *ngIf="!isEditing">{{ sesamien.nom }}</strong>
+              </td>
+            </tr>
+            <tr>
+              <td>Prénom usuel</td>
+              <td>
+                <mat-form-field *ngIf="isEditing">
+                  <input matInput [(ngModel)]="sesamien.prenomUsuel" />
+                </mat-form-field>
+                <strong *ngIf="!isEditing">{{ sesamien.prenomUsuel }}</strong>
+              </td>
+            </tr>
+            <!-- ... ajoutez les autres champs d'entrée ici ... -->
+            <tr>
+              <td>Mention</td>
+              <td>
+                <mat-form-field *ngIf="isEditing">
+                  <mat-select [(ngModel)]="sesamien.mention">
+                    <mat-option
+                      *ngFor="let mention of mentionOptions"
+                      [value]="mention"
+                    >
+                      {{ mention }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <strong *ngIf="!isEditing">{{ sesamien.mention }}</strong>
+              </td>
+            </tr>
+            <tr>
+              <td>Age</td>
+              <td>
+                <mat-form-field *ngIf="isEditing">
+                  <input matInput [(ngModel)]="sesamien.age" />
+                </mat-form-field>
+                <strong *ngIf="!isEditing">{{ sesamien.age }}</strong>
+              </td>
+            </tr>
+            <!-- ... code pour afficher les informations du semestre ici ... -->
+            <tr>
+              <td>Classement Semestre 1</td>
+              <td>
+                <strong>{{ sesamien.classement }}</strong>
+              </td>
+            </tr>
+            <tr>
+              <td>Moyenne Générale CC Semestre 1</td>
+              <td>
+                <strong>{{ sesamien.moyenneGeneraleCC }}</strong>
+              </td>
+            </tr>
+            <!-- Répétez pour les autres informations du semestre -->
+          </tbody>
+        </table>
+      </mat-card-content>
+
+      <!-- Actions de la carte -->
+      <mat-card-actions>
+        <button mat-button (click)="goToSesamienList()">Retour</button>
+        <button mat-button (click)="goToEditSesamien(sesamien)">Editer</button>
+        <button mat-button (click)="deleteSesamien(sesamien)">Supprimer</button>
+      </mat-card-actions>
+    </mat-card>
   </div>
 </div>

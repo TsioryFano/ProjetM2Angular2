@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Sesamien } from './sesamien';
-import { Observable, catchError, of, tap, Subject } from 'rxjs';
-import { SESAMIENS_URL, SESAMIEN_BY_ID_URL } from '../constants/endpoints';
+import { Observable, catchError, of, tap, Subject, throwError } from 'rxjs';
+import { SESAMIENS_URL, SESAMIEN_BY_ID_URL} from '../constants/endpoints';
 
 
 /**
@@ -32,7 +32,7 @@ export class SesamienService {
   * @param {number} sesamienId - L'ID du Sesamien à récupérer.
   * @returns {Observable<Sesamien | undefined>} - Un observable contenant le Sesamien ou undefined.
 */
-  getSesamienById(sesamienId: number): Observable<Sesamien | undefined> {
+  getSesamienById(sesamienId: string): Observable<Sesamien | undefined> {
     return this.http.get<Sesamien>(`${SESAMIEN_BY_ID_URL}${sesamienId}`).pipe(
       tap((response) => this.log(response)),
       catchError((error) => this.handleError(error, undefined))
@@ -58,7 +58,7 @@ export class SesamienService {
    * @param {Sesamien} updatedSesamien - Les nouvelles données du Sesamien.
    * @returns {Observable<Sesamien | undefined>} - Un observable contenant le Sesamien mis à jour ou undefined.
    */
-  updateSesamien(sesamienId: number, updatedSesamien: Sesamien): Observable<Sesamien | undefined> {
+  updateSesamien(sesamienId: string, updatedSesamien: Sesamien): Observable<Sesamien | undefined> {
     const url = `${SESAMIEN_BY_ID_URL}${sesamienId}`;
     return this.http.put<Sesamien>(url, updatedSesamien).pipe(
       tap((response) => this.log(response)),
@@ -71,7 +71,7 @@ export class SesamienService {
    * @returns {Observable<Sesamien>} - Un observable contenant le Sesamien ajouté.
    */
 addSesamien(sesamien: Sesamien):Observable<Sesamien> {
-       return this.http.post<Sesamien>(SESAMIENS_URL, sesamien).pipe(
+       return this.http.post<Sesamien>(SESAMIEN_BY_ID_URL, sesamien).pipe(
       tap((response)=>this.log(response)),
        catchError((error)=>this.handleError(error, null))
      );
@@ -82,7 +82,7 @@ addSesamien(sesamien: Sesamien):Observable<Sesamien> {
    * @param {number} sesamienId - L'ID du Sesamien à supprimer.
    * @returns {Observable<null>} - Un observable de type null.
    */
-  deleteSesamienByID(sesamienId: number): Observable<null>{
+  deleteSesamienByID(sesamienId: string): Observable<null>{
     return this.http.delete(`api/sesamiens/${sesamienId}`).pipe(
       tap((response)=>this.log(response)),
       catchError((error)=>this.handleError(error, null))
@@ -110,15 +110,17 @@ addSesamien(sesamien: Sesamien):Observable<Sesamien> {
    * @returns {Observable<any>} - Un observable contenant errorValue.
    */
 private handleError(error: HttpErrorResponse | Error, errorValue: any): Observable<any> {
-  if (error instanceof HttpErrorResponse && error.status === 404) {
+  if (error instanceof HttpErrorResponse) {
       // Handle HTTP errors
       console.error(
           `Backend returned code ${error.status}, ` +
           `body was: ${error.error}`
       );
+      return throwError(() =>new Error(error.error));
   } else {
       // Handle generic JavaScript errors
       console.error(error.message);
+      return throwError(() => new Error(error.message));
   }
   console.log("Full error object:", error);
   return of(errorValue);

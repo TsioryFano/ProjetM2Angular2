@@ -1,0 +1,29 @@
+/* CSS */
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ceci assurera que le conteneur occupe tout l'écran vertical */
+}
+
+.info-card {
+    width: 100%;
+    transition: box-shadow .3s;
+}
+
+.info-card:hover {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.semesters {
+    display: flex;
+    justify-content: space-between;
+}
+

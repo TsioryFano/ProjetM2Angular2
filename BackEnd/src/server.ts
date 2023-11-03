@@ -8,8 +8,10 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import { Request, Response, NextFunction } from 'express';
 import sesamienRoutes from "./routes/sesamienRoutes";
+import userRoutes from './routes/userRoutes';
 import morgan from "morgan";
 import { SESAMIENS } from "./mock-sesamien-list";
+
 
 export const app = express(); // Create an instance of the Express application
 
@@ -30,9 +32,12 @@ app.use(cors({
 app.use(bodyParser.json());
 
 // Route pour obtenir tous les "sesamiens"
-app.use("/api", sesamienRoutes);
+app.use("/api/sesamiens", sesamienRoutes);
 console.log('Routes Sesamien attachées à /api');
-  /**
+
+app.use('/api/users', userRoutes);
+ 
+/**
  * Middleware to handle errors and return appropriate response.
  * 
  * @param {Error} err - The error thrown.

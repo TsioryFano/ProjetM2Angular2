@@ -1,41 +1,78 @@
-<div class="container">
-  <div class="row">
-    <app-search-sesamien></app-search-sesamien>
+<div class="container" fxLayout="column" fxLayoutAlign="center center">
+  <!-- Search Component -->
 
-    <div *ngFor="let sesamien of sesamienList" class="col m4 s6">
-      <div
-        (click)="goToSesamien(sesamien)"
-        class="card horizontal"
-        appBorderCard
-      >
-        <div class="card-image">
-          <i *ngIf="!sesamien.image" class="material-icons user-icon"
-            >account_circle</i
-          >
-          <img *ngIf="sesamien.image" [src]="sesamien.image" />
-        </div>
-        <div class="card-stacked">
-          <div class="card-content">
-            <p>{{ sesamien.nom }}</p>
-            <p>{{ sesamien.prenomUsuel }}</p>
-            <p>Age: {{ sesamien.age }}</p>
-            <p>Mention: {{ sesamien.mention }}</p>
-            <p>Genre: {{ sesamien.genre }}</p>
-            <p>Promotion{{ sesamien.promotion }}</p>
+  <div class="search-container">
+    <app-search-sesamien></app-search-sesamien>
+  </div>
+
+  <!-- Sesamien Cards -->
+
+  <div fxLayout="row wrap" fxLayoutGap="16px" fxLayoutAlign="center start">
+    <div *ngFor="let sesamien of sesamienList">
+      <mat-card (click)="goToSesamien(sesamien)" sesamienBorderCard="green">
+        <!-- Header with Image and General Info -->
+
+        <mat-card-header class="horizontal-card">
+          <div mat-card-avatar>
+            <mat-icon *ngIf="!sesamien.image">account_circle</mat-icon>
+            <img *ngIf="sesamien.image" [src]="sesamien.image" />
           </div>
           <div class="card-content">
-            <p>Moyenne Générale: {{ sesamien.moyenneGenerale }}</p>
-            <p>Classement: {{ sesamien.classement }}</p>
+            <mat-card-title>{{ sesamien.nom }}</mat-card-title>
+            <div class="general-info">
+              <p><strong>Nom:</strong> {{ sesamien.nom }}</p>
+              <p><strong>Prénom usuel:</strong> {{ sesamien.prenomUsuel }}</p>
+              <p><strong>Age:</strong> {{ sesamien.age }}</p>
+              <p><strong>Mention:</strong> {{ sesamien.mention }}</p>
+              <p><strong>Genre:</strong> {{ sesamien.genre }}</p>
+              <p><strong>Promotion:</strong> {{ sesamien.promotion }}</p>
+            </div>
           </div>
-        </div>
-      </div>
+        </mat-card-header>
+
+        <!-- Academic Info -->
+
+        <mat-card-content>
+          <div fxFlex="50%" class="academic-info">
+            <p><strong>Résultat Semestre 1</strong></p>
+            <p>
+              <strong>Moyenne Générale:</strong> {{ sesamien.moyenneGenerale }}
+            </p>
+            <p><strong>Classement:</strong> {{ sesamien.classement }}</p>
+          </div>
+        </mat-card-content>
+
+        <!-- État -->
+
+        <mat-card-footer>
+          <div class="etat" style="background-color: green">
+            <strong>État:</strong> {{ sesamien.etat }}
+          </div>
+        </mat-card-footer>
+      </mat-card>
     </div>
   </div>
+
+  <mat-fab-button
+    color="primary"
+    class="floating-action-button"
+    routerLink="/sesamien/add"
+  >
+    <mat-icon>add</mat-icon>
+  </mat-fab-button>
 </div>
-<a
-  class="btn-floating btn-large waves-effect waves-light red z-depth-3"
-  style="position: fixed; bottom: 25px; right: 25px"
-  routerLink="/sesamien/add"
->
-  +
-</a>
+<!--
+<div class="container">
+  <mat-card>
+    <div class="zone">
+      <img src="path_to_your_image" alt="Image" class="image" />
+    </div>
+    <div class="zone">Zone 1</div>
+    skyp
+  </mat-card>
+
+  <mat-card>
+    <div class="zone">Zone 1</div>
+  </mat-card>
+</div>
+-->

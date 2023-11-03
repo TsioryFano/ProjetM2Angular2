@@ -23,13 +23,23 @@ export const getSesamienById = (req: Request, res: Response) => {
 
 export const updateSesamien = (req: Request, res: Response) => {
     const sesamienId = String(req.params.sesamienId);
+    console.log("ID du Sesamien à mettre à jour:", sesamienId);
     const updatedSesamien = req.body;
 
-    const sesamien = SESAMIENS.find((sesamien) => String(sesamien.id) === sesamienId);
+    const sesamien = SESAMIENS.find(sesamien => String(sesamien.id) === sesamienId);
 
     if (!sesamien) {
         return res.status(404).json({ message: "Sesamien non trouvé" });
     }
+
+    const allowedUpdates = ["nom", "prenoms", "prenomUsuel"]; // Liste des champs que vous souhaitez autoriser à être mis à jour
+
+// Supprimez toutes les clés de updatedSesamien qui ne sont pas dans allowedUpdates
+Object.keys(updatedSesamien).forEach(key => {
+    if (!allowedUpdates.includes(key)) {
+        delete updatedSesamien[key];
+    }
+});
 
     Object.assign(sesamien, updatedSesamien); // Cette ligne copie toutes les propriétés d'updatedSesamien vers sesamien
 
@@ -40,11 +50,13 @@ export const updateSesamien = (req: Request, res: Response) => {
 
 
 export const createSesamien = (req: Request, res: Response) => {
+    console.log('Corps de la requête reçue:', req.body);
     console.log("Route POST /api/sesamiens appelée");
 
     const validationResult = validateSesamien(req.body);
 
     if (validationResult.error) {
+        console.error('Erreur lors de la validation du Sesamien:', validationResult.error.details[0].message);
         return res.status(400).json({ error: validationResult.error.details[0].message });
     }
 
