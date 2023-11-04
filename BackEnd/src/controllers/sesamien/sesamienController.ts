@@ -48,6 +48,33 @@ Object.keys(updatedSesamien).forEach(key => {
     res.json(sesamien);
 };
 
+export const searchSesamiens = (req: Request, res: Response) => {
+    console.log('Requête de recherche reçue', req.query);
+    const nom = typeof req.query.nom === 'string' ? req.query.nom.trim().toLowerCase() : "";
+
+    if (!nom) {
+        return res.status(400).json({ message: 'Un terme de recherche est requis.' });
+    }
+    try {
+        // Filtrer en ignorant la casse
+        const filteredSesamiens = SESAMIENS.filter(sesamien =>
+            sesamien.nom.toLowerCase().includes(nom)
+        );
+
+        if (filteredSesamiens.length === 0) {
+            // Si aucun résultat n'est trouvé, vous pouvez choisir de retourner un message ou une liste vide.
+            return res.status(404).json({ message: 'Aucun sesamien correspondant trouvé.' });
+        }
+        
+        res.json(
+            filteredSesamiens
+        );  console.log('Sesamiens filtrés', filteredSesamiens);
+    } catch (error) {
+        console.error('Erreur lors de la recherche des sesamiens:', error);
+        res.status(500).json({ message: 'Erreur lors de la recherche des sesamiens.' });
+    }
+};
+
 
 export const createSesamien = (req: Request, res: Response) => {
     console.log('Corps de la requête reçue:', req.body);

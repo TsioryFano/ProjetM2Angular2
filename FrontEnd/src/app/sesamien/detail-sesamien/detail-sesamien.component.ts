@@ -15,6 +15,7 @@ export class DetailSesamienComponent implements OnInit {
   /** List of all Sesamien entities. */
   sesamienList: Sesamien [];
 
+
    /** Current Sesamien entity being displayed. */
   sesamien: Sesamien|undefined;
 
@@ -72,7 +73,7 @@ export class DetailSesamienComponent implements OnInit {
    * Navigates to the list of all Sesamien entities.
    */
   goToSesamienList(){
-    this.router.navigate(['/sesamiens']);
+    this.router.navigate(['/homepage']);
   }
   
    /**

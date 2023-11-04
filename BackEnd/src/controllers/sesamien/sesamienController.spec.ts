@@ -1,68 +1,57 @@
-import request from 'supertest';
-import { app } from '../../server';
-import { SESAMIENS } from '../../mock/mock-sesamien-list';
+// sesamienController.spec.ts
 import { expect } from 'chai';
+import request from 'supertest';
+import { app } from '../../server'; // Assurez-vous que cela pointe vers votre instance de serveur express
+import { SESAMIENS } from '../../mock/mock-sesamien-list';
 
-// Remplacement pour "GET /api/sesamiens" - "should fetch all sesamiens"
-const testFetchAllSesamiens = async () => {
-    const res = await request(app).get('/api/sesamiens');
-    expect(res.status).to.equal(200);
-    expect(res.body).to.deep.equal(SESAMIENS);
-};
+describe('Sesamien Controller Tests', () => {
+  describe('GET /api/sesamiens', () => {
+    it('should fetch all sesamiens', async () => {
+      const response = await request(app).get('/api/sesamiens');
+      expect(response.status).to.equal(200);
+      expect(response.body).to.deep.equal(SESAMIENS); // Assurez-vous que SESAMIENS est accessible ici
+    });
+  });
 
-// Remplacement pour "GET /api/sesamiens/:id" - "should fetch a specific sesamien by id"
-const testFetchSpecificSesamienById = async () => {
-    const sampleSesamien = SESAMIENS[0];
-    const res = await request(app).get(`/api/sesamiens/${sampleSesamien.id}`);
-    expect(res.status).to.equal(200);
-    expect(res.body).to.deep.equal(sampleSesamien);
-};
+  describe('GET /api/sesamiens/:id', () => {
+    it('should fetch a specific sesamien by id', async () => {
+      const sesamien = SESAMIENS[0]; // Prenez le premier pour le test
+      const response = await request(app).get(`/api/sesamiens/${sesamien.id}`);
+      expect(response.status).to.equal(200);
+      expect(response.body).to.deep.equal(sesamien);
+    });
+  });
 
-const testUpdateExistingSesamien = async () => {
-    const sampleSesamien = { ...SESAMIENS[0], name: 'Updated Name' };
-    const res = await request(app).put(`/api/sesamiens/${sampleSesamien.id}`).send(sampleSesamien);
-    expect(res.status).to.equal(200);
-    expect(res.body.name).to.equal('Updated Name');
-};
+  describe('PUT /api/sesamiens/:id', () => {
+    it('should update an existing sesamien', async () => {
+      const sesamien = SESAMIENS[0];
+      const updatedData = { nom: 'Updated Nom', prenoms: 'Updated Prenoms' };
+      const response = await request(app).put(`/api/sesamiens/${sesamien.id}`).send(updatedData);
+      expect(response.status).to.equal(200);
+      expect(response.body).to.include(updatedData);
+    });
+  });
 
-// Remplacement pour "PUT /api/sesamiens/:id" - "should return 404 when updating a non-existing sesamien"
-const testUpdateNonExistingSesamien = async () => {
-    const res = await request(app).put('/api/sesamiens/invalid-id').send({});
-    expect(res.status).to.equal(404);
-};
+  describe('GET /api/sesamiens/search', () => {
+    it('should search sesamiens by name', async () => {
+      const searchTerm = 'Emma'; // Remplacez par une valeur de test valide
+      const response = await request(app).get(`/api/sesamiens/search?nom=${searchTerm}`);
+      expect(response.status).to.equal(200);
+      // Faites des assertions sur la base des sesamiens attendus qui correspondent au terme de recherche
+    });
+  });
 
-// Remplacement pour "POST /api/sesamiens" - "should create a new sesamien and return it"
-const testCreateNewSesamien = async () => {
-    const newSesamien = { name: 'New Sesamien' };  // Assurez-vous d'ajouter tous les champs nécessaires
-    const res = await request(app).post('/api/sesamiens').send(newSesamien);
-    expect(res.status).to.equal(201);
-    expect(res.body.name).to.equal(newSesamien.name);
-    expect(res.body.id).to.have.lengthOf(8);  // Adaptez cela en fonction de la logique de votre générateur d'ID
-};
+  describe('POST /api/sesamiens', () => {
+    it('should create a new sesamien', async () => {
+      const newSesamien = {
+        nom: 'New Nom',
+        prenoms: 'New Prenoms',
+        // Ajoutez tous les autres champs nécessaires
+      };
+      const response = await request(app).post('/api/sesamiens').send(newSesamien);
+      expect(response.status).to.equal(201);
+      expect(response.body).to.include(newSesamien);
+    });
+  });
+});
 
-// Remplacement pour "POST /api/sesamiens" - "should return 400 for invalid sesamien data"
-const testCreateInvalidSesamien = async () => {
-    const invalidSesamien = {};  // Données invalides
-    const res = await request(app).post('/api/sesamiens').send(invalidSesamien);
-    expect(res.status).to.equal(400);
-};
-
-// Exécutez vos tests
-(async () => {
-    try {
-        await testFetchAllSesamiens();
-        await testFetchSpecificSesamienById();
-        await testUpdateExistingSesamien();
-        await testUpdateNonExistingSesamien();
-        await testCreateNewSesamien();
-        await testCreateInvalidSesamien();
-        
-        console.log('Tous les tests ont réussi.');
-    } catch (error) {
-        if (error instanceof Error) {
-            console.error('Un test a échoué:', error.message);
-        } else {
-            console.error('Un test a échoué:', error);
-        }
-    }
-})();

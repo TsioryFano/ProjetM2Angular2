@@ -3,7 +3,7 @@ import { Sesamien, Mention, RegionOrigine, Genre, Etat} from "../models/sesamien
 export const SESAMIENS: Sesamien[] = [
     {
         id: 1,
-        nom: "Nom1",
+        nom: "Emma",
         prenoms: "Prénoms1",
         prenomUsuel: "PrénomUsuel1",
         mention: Mention.S,
@@ -40,7 +40,7 @@ export const SESAMIENS: Sesamien[] = [
     },
     {
         id: 2,
-        nom: "Nom2",
+        nom: "Chloé",
         prenoms: "Prénoms2",
         prenomUsuel: "PrénomUsuel2",
         mention: Mention.L,
@@ -67,7 +67,7 @@ export const SESAMIENS: Sesamien[] = [
     },
     {
         id: 3,
-        nom: "Nom3",
+        nom: "Inès",
         prenoms: "Prénoms3",
         prenomUsuel: "PrénomUsuel3",
         mention: Mention.S,
@@ -101,7 +101,7 @@ export const SESAMIENS: Sesamien[] = [
 
     {
         id: 4,
-        nom: "Nom4",
+        nom: "Zoé",
         prenoms: "Prénoms4",
         prenomUsuel: "PrénomUsuel4",
         mention: Mention.L,
@@ -135,7 +135,7 @@ export const SESAMIENS: Sesamien[] = [
     },
     {
         id: 5,
-        nom: "Nom5",
+        nom: "Lucas",
         prenoms: "Prénoms5",
         prenomUsuel: "PrénomUsuel5",
         mention: Mention.S,
@@ -168,7 +168,7 @@ export const SESAMIENS: Sesamien[] = [
     },
     {
         id: 6,
-        nom: "Nom6",
+        nom: "Hugo",
         prenoms: "Prénoms6",
         prenomUsuel: "PrénomUsuel6",
         mention: Mention.S,
@@ -201,7 +201,7 @@ export const SESAMIENS: Sesamien[] = [
     },
     {
         id: 7,
-        nom: "Nom7",
+        nom: "Ethan",
         prenoms: "Prénoms7",
         prenomUsuel: "PrénomUsuel7",
         mention: Mention.L,
@@ -234,7 +234,7 @@ export const SESAMIENS: Sesamien[] = [
     },
     {
         id: 8,
-        nom: "Nom8",
+        nom: "Alexandre",
         prenoms: "Prénoms8",
         prenomUsuel: "PrénomUsuel8",
         mention: Mention.S,
@@ -267,7 +267,7 @@ export const SESAMIENS: Sesamien[] = [
     },
     {
         id: 9,
-        nom: "Nom9",
+        nom: "Gabriel",
         prenoms: "Prénoms9",
         prenomUsuel: "PrénomUsuel9",
         mention: Mention.L,
