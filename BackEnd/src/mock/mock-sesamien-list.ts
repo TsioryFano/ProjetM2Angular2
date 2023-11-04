@@ -1,4 +1,4 @@
-import { Sesamien, Mention, RegionOrigine, Genre, Etat} from "./models/sesamien";
+import { Sesamien, Mention, RegionOrigine, Genre, Etat} from "../models/sesamien";
 
 export const SESAMIENS: Sesamien[] = [
     {

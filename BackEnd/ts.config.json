@@ -5,7 +5,8 @@
         "strict": true, 
         "outDir": "./built",
         "experimentalDecorators": true,
-        "emitDecoratorMetaData": true,
+        "target": "ES2015",
+        "emitDecoratorMetadata": true,
         "esModuleInterop": true,
         "types": ["mocha", "node"]
     },

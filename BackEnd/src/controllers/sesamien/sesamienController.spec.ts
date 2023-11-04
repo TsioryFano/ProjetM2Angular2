@@ -1,6 +1,6 @@
 import request from 'supertest';
-import { app } from '../server';
-import { SESAMIENS } from '../mock-sesamien-list';
+import { app } from '../../server';
+import { SESAMIENS } from '../../mock/mock-sesamien-list';
 import { expect } from 'chai';
 
 // Remplacement pour "GET /api/sesamiens" - "should fetch all sesamiens"

@@ -1,8 +1,8 @@
-import { SESAMIENS } from "../mock-sesamien-list";
+import { SESAMIENS } from "../../mock/mock-sesamien-list";
 import { Request, Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import crypto from 'crypto';
-import { validateSesamien } from '../validators/sesamienValidator';
+import { validateSesamien } from '../../validators/sesamienValidator';
 
 export const getSesamiens = (req: Request, res: Response) => {
     try {

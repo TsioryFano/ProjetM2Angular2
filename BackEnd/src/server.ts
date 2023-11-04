@@ -10,8 +10,17 @@ import { Request, Response, NextFunction } from 'express';
 import sesamienRoutes from "./routes/sesamienRoutes";
 import userRoutes from './routes/userRoutes';
 import morgan from "morgan";
-import { SESAMIENS } from "./mock-sesamien-list";
+import { SESAMIENS } from "./mock/mock-sesamien-list";
+import dotenv from 'dotenv';
+dotenv.config();
+import path from 'path';
 
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
+
+if (!process.env.JWT_SECRET) {
+    console.error('FATAL ERROR: JWT_SECRET is not defined.');
+    process.exit(1); // Arrête l'application avec une erreur
+  }
 
 export const app = express(); // Create an instance of the Express application
 

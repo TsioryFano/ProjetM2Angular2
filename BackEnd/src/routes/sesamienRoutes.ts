@@ -1,5 +1,5 @@
 import express from "express";
-import { getSesamiens, getSesamienById, updateSesamien, createSesamien } from "../controllers/sesamienController";
+import { getSesamiens, getSesamienById, updateSesamien, createSesamien } from "../controllers/sesamien/sesamienController";
 
 const router = express.Router();
 
